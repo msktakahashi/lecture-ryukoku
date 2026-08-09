@@ -1,0 +1,16 @@
+project:
+  type: website
+
+website:
+  title: "Rによるデータ分析"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: lecture01.qmd
+        text: 第1回
+
+format:
+  html:
+    theme: cosmo
+    toc: true

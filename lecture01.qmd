@@ -1,0 +1,50 @@
+---
+title: "第1回：RとRStudioの基本"
+---
+
+## 今日の内容
+
+第1回では、Rを使ったデータ分析の基本を学びます。
+
+## Rで計算する
+
+まず簡単な計算をしてみましょう。
+
+```{r}
+1 + 1
+```
+
+## データを見る
+
+Rに標準で用意されている `mtcars` データを使います。
+
+```{r}
+head(mtcars)
+```
+
+## 記述統計量
+
+```{r}
+summary(mtcars)
+```
+
+## グラフを描く
+
+車重と燃費の関係を見てみましょう。
+
+```{r}
+plot(
+  mtcars$wt,
+  mtcars$mpg,
+  xlab = "Weight",
+  ylab = "MPG"
+)
+```
+
+## 回帰分析
+
+```{r}
+model <- lm(mpg ~ wt, data = mtcars)
+
+summary(model)
+```
