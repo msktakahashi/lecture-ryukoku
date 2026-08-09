@@ -3,13 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Rによるデータ分析"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: lecture01.qmd
-        text: 第1回
+  title: "データ分析と問題解決"
 
 format:
   html:

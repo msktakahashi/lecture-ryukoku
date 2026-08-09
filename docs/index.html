@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rによるデータ分析</title>
+<title>データ分析と問題解決</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,11 +26,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -47,11 +81,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -77,49 +111,27 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Rによるデータ分析</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lecture01.html"> 
-<span class="menu-text">第1回</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#講義概要" id="toc-講義概要" class="nav-link active" data-scroll-target="#講義概要">講義概要</a></li>
-  <li><a href="#講義資料" id="toc-講義資料" class="nav-link" data-scroll-target="#講義資料">講義資料</a></li>
+  <ul class="collapse">
+  <li><a href="#今日のテーマ" id="toc-今日のテーマ" class="nav-link active" data-scroll-target="#今日のテーマ">今日のテーマ</a></li>
+  <li><a href="#社会問題を見つける" id="toc-社会問題を見つける" class="nav-link" data-scroll-target="#社会問題を見つける">1. 社会問題を見つける</a></li>
+  <li><a href="#問いをデータで検証できる形にする" id="toc-問いをデータで検証できる形にする" class="nav-link" data-scroll-target="#問いをデータで検証できる形にする">2. 問いをデータで検証できる形にする</a></li>
+  <li><a href="#データを見てみる" id="toc-データを見てみる" class="nav-link" data-scroll-target="#データを見てみる">3. データを見てみる</a></li>
+  <li><a href="#データを可視化する" id="toc-データを可視化する" class="nav-link" data-scroll-target="#データを可視化する">4. データを可視化する</a></li>
+  <li><a href="#数字で関係を確認する" id="toc-数字で関係を確認する" class="nav-link" data-scroll-target="#数字で関係を確認する">5. 数字で関係を確認する</a></li>
+  <li><a href="#分析結果をどう解釈するか" id="toc-分析結果をどう解釈するか" class="nav-link" data-scroll-target="#分析結果をどう解釈するか">6. 分析結果をどう解釈するか</a></li>
+  <li><a href="#データから問題解決へ" id="toc-データから問題解決へ" class="nav-link" data-scroll-target="#データから問題解決へ">7. データから問題解決へ</a></li>
+  <li><a href="#今日のまとめ" id="toc-今日のまとめ" class="nav-link" data-scroll-target="#今日のまとめ">今日のまとめ</a></li>
   </ul>
 </nav>
     </div>
@@ -128,7 +140,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Rによるデータ分析</h1>
+<h1 class="title">データ分析と問題解決</h1>
+<p class="subtitle lead">データから社会問題を考える</p>
 </div>
 
 
@@ -145,27 +158,150 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="講義概要" class="level2">
-<h2 class="anchored" data-anchor-id="講義概要">講義概要</h2>
-<p>この授業では、Rを用いて実際のデータを分析する方法を学びます。</p>
-<p>主な内容は以下の通りです。</p>
-<ul>
-<li>RとRStudioの基本</li>
-<li>データの読み込み</li>
-<li>データの加工</li>
-<li>データの可視化</li>
-<li>記述統計</li>
-<li>回帰分析</li>
-</ul>
+<p><a href="./lecture-ryukoku-slides.html">講義スライド</a></p>
+<section id="今日のテーマ" class="level2">
+<h2 class="anchored" data-anchor-id="今日のテーマ">今日のテーマ</h2>
+<p>この授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。</p>
+<section id="今日の問い" class="level3">
+<h3 class="anchored" data-anchor-id="今日の問い">今日の問い</h3>
+<blockquote class="blockquote">
+<p><strong>データを使って、社会問題についてどこまで明らかにできるでしょうか？</strong></p>
+</blockquote>
+<hr>
 </section>
-<section id="講義資料" class="level2">
-<h2 class="anchored" data-anchor-id="講義資料">講義資料</h2>
-<p>各回の講義資料をこのページから公開します。</p>
+</section>
+<section id="社会問題を見つける" class="level2">
+<h2 class="anchored" data-anchor-id="社会問題を見つける">1. 社会問題を見つける</h2>
+<section id="問題提起" class="level3">
+<h3 class="anchored" data-anchor-id="問題提起">問題提起</h3>
+<p>ここに今回扱う社会問題を提示します。</p>
+<p>例えば、</p>
+<blockquote class="blockquote">
+<p>人口減少が進む地域では、地域経済にどのような変化が起きているのでしょうか？</p>
+</blockquote>
+</section>
+<section id="考えてみよう" class="level3">
+<h3 class="anchored" data-anchor-id="考えてみよう">考えてみよう</h3>
+<p>次の問いについて考えてみてください。</p>
+<ol type="1">
+<li>人口減少によって何が起こると思いますか？</li>
+<li>それをデータで調べるには、どのような変数が必要でしょうか？</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="問いをデータで検証できる形にする" class="level2">
+<h2 class="anchored" data-anchor-id="問いをデータで検証できる形にする">2. 問いをデータで検証できる形にする</h2>
+<p>社会問題を分析するためには、漠然とした問題を <strong>データで答えられる問い</strong>に変える必要があります。</p>
+<section id="分析する問い" class="level3">
+<h3 class="anchored" data-anchor-id="分析する問い">分析する問い</h3>
+<blockquote class="blockquote">
+<p>人口減少が大きい地域ほど、地域経済も縮小しているのでしょうか？</p>
+</blockquote>
+</section>
+<section id="必要なデータ" class="level3">
+<h3 class="anchored" data-anchor-id="必要なデータ">必要なデータ</h3>
 <ul>
-<li><a href="./lecture01.html">第1回：RとRStudioの基本</a></li>
-<li>第2回：データの読み込みと加工</li>
-<li>第3回：データの可視化</li>
+<li>人口の変化</li>
+<li>所得</li>
+<li>雇用</li>
+<li>年齢構成</li>
+<li>その他の地域特性</li>
 </ul>
+<hr>
+</section>
+</section>
+<section id="データを見てみる" class="level2">
+<h2 class="anchored" data-anchor-id="データを見てみる">3. データを見てみる</h2>
+<p>まずデータの構造を確認します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ここにデータ読み込みのコードを入れる</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="データの確認" class="level3">
+<h3 class="anchored" data-anchor-id="データの確認">データの確認</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># head(data)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="データを可視化する" class="level2">
+<h2 class="anchored" data-anchor-id="データを可視化する">4. データを可視化する</h2>
+<p>まず、変数間の関係を図で確認します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(ggplot2)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(data, aes(x = population_change, y = income)) +</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_point()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="考えてみよう-1" class="level3">
+<h3 class="anchored" data-anchor-id="考えてみよう-1">考えてみよう</h3>
+<blockquote class="blockquote">
+<p>このグラフから、どのような関係が読み取れるでしょうか？</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="数字で関係を確認する" class="level2">
+<h2 class="anchored" data-anchor-id="数字で関係を確認する">5. 数字で関係を確認する</h2>
+<p>例えば回帰分析を使って、変数間の関係を調べます。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model &lt;- lm(income ~ population_change, data = data)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="分析結果をどう解釈するか" class="level2">
+<h2 class="anchored" data-anchor-id="分析結果をどう解釈するか">6. 分析結果をどう解釈するか</h2>
+<p>仮に、</p>
+<blockquote class="blockquote">
+<p>人口減少が大きい地域ほど所得が低い</p>
+</blockquote>
+<p>という関係が見つかったとします。</p>
+<p>しかし、</p>
+<blockquote class="blockquote">
+<p><strong>人口減少が所得を低下させた</strong></p>
+</blockquote>
+<p>と結論づけてよいでしょうか？</p>
+<section id="考えられる別の説明" class="level3">
+<h3 class="anchored" data-anchor-id="考えられる別の説明">考えられる別の説明</h3>
+<ul>
+<li>地域経済の悪化が人口流出を引き起こしている</li>
+<li>産業構造が人口と所得の両方に影響している</li>
+<li>高齢化など別の要因が関係している</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="データから問題解決へ" class="level2">
+<h2 class="anchored" data-anchor-id="データから問題解決へ">7. データから問題解決へ</h2>
+<p>分析結果を踏まえて、どのような政策が考えられるでしょうか？</p>
+<p>例えば、</p>
+<ul>
+<li>移住・定住支援</li>
+<li>子育て支援</li>
+<li>企業誘致</li>
+<li>公共交通への支援</li>
+<li>地域産業の活性化</li>
+</ul>
+<section id="最後の問い" class="level3">
+<h3 class="anchored" data-anchor-id="最後の問い">最後の問い</h3>
+<blockquote class="blockquote">
+<p><strong>どの政策が有効かを判断するためには、さらにどのようなデータが必要でしょうか？</strong></p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="今日のまとめ" class="level2">
+<h2 class="anchored" data-anchor-id="今日のまとめ">今日のまとめ</h2>
+<p>データ分析による問題解決は、</p>
+<p><strong>社会問題 → 問い → データ → 分析 → 解釈 → 解決策</strong></p>
+<p>というプロセスです。</p>
+<p>データ分析の目的は単に数字を計算することではなく、</p>
+<blockquote class="blockquote">
+<p><strong>社会問題を検証可能な問いに変え、よりよい意思決定につなげること</strong></p>
+</blockquote>
+<p>です。</p>
 
 
 </section>

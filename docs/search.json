@@ -1,5 +1,103 @@
 [
   {
+    "objectID": "lecture-ryukoku-slides.html#今日の問い",
+    "href": "lecture-ryukoku-slides.html#今日の問い",
+    "title": "データ分析と問題解決",
+    "section": "今日の問い",
+    "text": "今日の問い\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#身近な社会問題を考えてみよう",
+    "href": "lecture-ryukoku-slides.html#身近な社会問題を考えてみよう",
+    "title": "データ分析と問題解決",
+    "section": "身近な社会問題を考えてみよう",
+    "text": "身近な社会問題を考えてみよう\n例えば、\n人口減少\n人口が減ると、地域では何が起こるでしょうか？\n\n\n地域経済の縮小？\n店舗の減少？\n公共交通の縮小？\n税収の減少？\n高齢化？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#社会問題から問いへ",
+    "href": "lecture-ryukoku-slides.html#社会問題から問いへ",
+    "title": "データ分析と問題解決",
+    "section": "社会問題から「問い」へ",
+    "text": "社会問題から「問い」へ\n「人口減少は問題だ」\nだけでは分析できません。\nデータで答えられる問いに変える\n\n人口減少が大きい地域ほど、地域経済も縮小しているのか？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#何を測ればよいだろう",
+    "href": "lecture-ryukoku-slides.html#何を測ればよいだろう",
+    "title": "データ分析と問題解決",
+    "section": "何を測ればよいだろう？",
+    "text": "何を測ればよいだろう？\n人口減少\nどう測る？\n地域経済\nどう測る？\n\n\n所得\n雇用\n事業所数\n小売販売額"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#データを見てみよう",
+    "href": "lecture-ryukoku-slides.html#データを見てみよう",
+    "title": "データ分析と問題解決",
+    "section": "データを見てみよう",
+    "text": "データを見てみよう\n\n# head(data)"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#まず見る",
+    "href": "lecture-ryukoku-slides.html#まず見る",
+    "title": "データ分析と問題解決",
+    "section": "まず「見る」",
+    "text": "まず「見る」\n\n# ggplot(data, aes(x = population_change,\n#                  y = income)) +\n#   geom_point()"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#このグラフから何が言える",
+    "href": "lecture-ryukoku-slides.html#このグラフから何が言える",
+    "title": "データ分析と問題解決",
+    "section": "このグラフから何が言える？",
+    "text": "このグラフから何が言える？\n\n皆さんなら、この図をどう解釈しますか？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#数字で確かめる",
+    "href": "lecture-ryukoku-slides.html#数字で確かめる",
+    "title": "データ分析と問題解決",
+    "section": "数字で確かめる",
+    "text": "数字で確かめる\n\n# model &lt;- lm(income ~ population_change,\n#             data = data)\n#\n# summary(model)"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#ここで重要な問題",
+    "href": "lecture-ryukoku-slides.html#ここで重要な問題",
+    "title": "データ分析と問題解決",
+    "section": "ここで重要な問題",
+    "text": "ここで重要な問題\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nでは……\n\n人口減少が所得を低下させたと言えるでしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#相関-因果",
+    "href": "lecture-ryukoku-slides.html#相関-因果",
+    "title": "データ分析と問題解決",
+    "section": "相関 ≠ 因果",
+    "text": "相関 ≠ 因果\n考えられる別の説明：\n\n地域経済の悪化 → 人口流出\n産業構造 → 人口と所得\n高齢化 → 人口と所得\n\nデータから何が言えて、何が言えないかを考えることが重要"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#分析から問題解決へ",
+    "href": "lecture-ryukoku-slides.html#分析から問題解決へ",
+    "title": "データ分析と問題解決",
+    "section": "分析から問題解決へ",
+    "text": "分析から問題解決へ\nでは、どのような政策が考えられるでしょうか？\n\n移住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#もう一つの問い",
+    "href": "lecture-ryukoku-slides.html#もう一つの問い",
+    "title": "データ分析と問題解決",
+    "section": "もう一つの問い",
+    "text": "もう一つの問い\n\nどの政策が有効かを判断するためには、どのようなデータが必要でしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#データ分析による問題解決",
+    "href": "lecture-ryukoku-slides.html#データ分析による問題解決",
+    "title": "データ分析と問題解決",
+    "section": "データ分析による問題解決",
+    "text": "データ分析による問題解決\n社会問題\n↓\n問いを立てる\n↓\nデータを集める\n↓\n分析する\n↓\n結果を解釈する\n↓\n解決策を考える"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#今日のtakeaway",
+    "href": "lecture-ryukoku-slides.html#今日のtakeaway",
+    "title": "データ分析と問題解決",
+    "section": "今日のTakeaway",
+    "text": "今日のTakeaway\n\nデータ分析とは、数字を計算することではなく、社会問題を検証可能な問いに変え、よりよい意思決定につなげることである。"
+  },
+  {
     "objectID": "lecture01.html",
     "href": "lecture01.html",
     "title": "第1回：RとRStudioの基本",
@@ -51,23 +149,72 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Rによるデータ分析",
+    "title": "データ分析と問題解決",
     "section": "",
-    "text": "この授業では、Rを用いて実際のデータを分析する方法を学びます。\n主な内容は以下の通りです。\n\nRとRStudioの基本\nデータの読み込み\nデータの加工\nデータの可視化\n記述統計\n回帰分析"
+    "text": "講義スライド"
   },
   {
-    "objectID": "index.html#講義概要",
-    "href": "index.html#講義概要",
-    "title": "Rによるデータ分析",
-    "section": "",
-    "text": "この授業では、Rを用いて実際のデータを分析する方法を学びます。\n主な内容は以下の通りです。\n\nRとRStudioの基本\nデータの読み込み\nデータの加工\nデータの可視化\n記述統計\n回帰分析"
+    "objectID": "index.html#今日のテーマ",
+    "href": "index.html#今日のテーマ",
+    "title": "データ分析と問題解決",
+    "section": "今日のテーマ",
+    "text": "今日のテーマ\nこの授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n今日の問い\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
   },
   {
-    "objectID": "index.html#講義資料",
-    "href": "index.html#講義資料",
-    "title": "Rによるデータ分析",
-    "section": "講義資料",
-    "text": "講義資料\n各回の講義資料をこのページから公開します。\n\n第1回：RとRStudioの基本\n第2回：データの読み込みと加工\n第3回：データの可視化"
+    "objectID": "index.html#社会問題を見つける",
+    "href": "index.html#社会問題を見つける",
+    "title": "データ分析と問題解決",
+    "section": "1. 社会問題を見つける",
+    "text": "1. 社会問題を見つける\n\n問題提起\nここに今回扱う社会問題を提示します。\n例えば、\n\n人口減少が進む地域では、地域経済にどのような変化が起きているのでしょうか？\n\n\n\n考えてみよう\n次の問いについて考えてみてください。\n\n人口減少によって何が起こると思いますか？\nそれをデータで調べるには、どのような変数が必要でしょうか？"
+  },
+  {
+    "objectID": "index.html#問いをデータで検証できる形にする",
+    "href": "index.html#問いをデータで検証できる形にする",
+    "title": "データ分析と問題解決",
+    "section": "2. 問いをデータで検証できる形にする",
+    "text": "2. 問いをデータで検証できる形にする\n社会問題を分析するためには、漠然とした問題を データで答えられる問いに変える必要があります。\n\n分析する問い\n\n人口減少が大きい地域ほど、地域経済も縮小しているのでしょうか？\n\n\n\n必要なデータ\n\n人口の変化\n所得\n雇用\n年齢構成\nその他の地域特性"
+  },
+  {
+    "objectID": "index.html#データを見てみる",
+    "href": "index.html#データを見てみる",
+    "title": "データ分析と問題解決",
+    "section": "3. データを見てみる",
+    "text": "3. データを見てみる\nまずデータの構造を確認します。\n\n# ここにデータ読み込みのコードを入れる\n\n\nデータの確認\n\n# head(data)"
+  },
+  {
+    "objectID": "index.html#データを可視化する",
+    "href": "index.html#データを可視化する",
+    "title": "データ分析と問題解決",
+    "section": "4. データを可視化する",
+    "text": "4. データを可視化する\nまず、変数間の関係を図で確認します。\n\n# library(ggplot2)\n\n# ggplot(data, aes(x = population_change, y = income)) +\n#   geom_point()\n\n\n考えてみよう\n\nこのグラフから、どのような関係が読み取れるでしょうか？"
+  },
+  {
+    "objectID": "index.html#数字で関係を確認する",
+    "href": "index.html#数字で関係を確認する",
+    "title": "データ分析と問題解決",
+    "section": "5. 数字で関係を確認する",
+    "text": "5. 数字で関係を確認する\n例えば回帰分析を使って、変数間の関係を調べます。\n\n# model &lt;- lm(income ~ population_change, data = data)\n# summary(model)"
+  },
+  {
+    "objectID": "index.html#分析結果をどう解釈するか",
+    "href": "index.html#分析結果をどう解釈するか",
+    "title": "データ分析と問題解決",
+    "section": "6. 分析結果をどう解釈するか",
+    "text": "6. 分析結果をどう解釈するか\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nしかし、\n\n人口減少が所得を低下させた\n\nと結論づけてよいでしょうか？\n\n考えられる別の説明\n\n地域経済の悪化が人口流出を引き起こしている\n産業構造が人口と所得の両方に影響している\n高齢化など別の要因が関係している"
+  },
+  {
+    "objectID": "index.html#データから問題解決へ",
+    "href": "index.html#データから問題解決へ",
+    "title": "データ分析と問題解決",
+    "section": "7. データから問題解決へ",
+    "text": "7. データから問題解決へ\n分析結果を踏まえて、どのような政策が考えられるでしょうか？\n例えば、\n\n移住・定住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化\n\n\n最後の問い\n\nどの政策が有効かを判断するためには、さらにどのようなデータが必要でしょうか？"
+  },
+  {
+    "objectID": "index.html#今日のまとめ",
+    "href": "index.html#今日のまとめ",
+    "title": "データ分析と問題解決",
+    "section": "今日のまとめ",
+    "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
   },
   {
     "objectID": "about.html",
@@ -75,5 +222,75 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "lecture-ryukoku.html",
+    "href": "lecture-ryukoku.html",
+    "title": "データ分析と問題解決",
+    "section": "",
+    "text": "この授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#今日のテーマ",
+    "href": "lecture-ryukoku.html#今日のテーマ",
+    "title": "データ分析と問題解決",
+    "section": "",
+    "text": "この授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#社会問題を見つける",
+    "href": "lecture-ryukoku.html#社会問題を見つける",
+    "title": "データ分析と問題解決",
+    "section": "1. 社会問題を見つける",
+    "text": "1. 社会問題を見つける\n\n問題提起\nここに今回扱う社会問題を提示します。\n例えば、\n\n人口減少が進む地域では、地域経済にどのような変化が起きているのでしょうか？\n\n\n\n考えてみよう\n次の問いについて考えてみてください。\n\n人口減少によって何が起こると思いますか？\nそれをデータで調べるには、どのような変数が必要でしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#問いをデータで検証できる形にする",
+    "href": "lecture-ryukoku.html#問いをデータで検証できる形にする",
+    "title": "データ分析と問題解決",
+    "section": "2. 問いをデータで検証できる形にする",
+    "text": "2. 問いをデータで検証できる形にする\n社会問題を分析するためには、漠然とした問題を データで答えられる問いに変える必要があります。\n\n分析する問い\n\n人口減少が大きい地域ほど、地域経済も縮小しているのでしょうか？\n\n\n\n必要なデータ\n\n人口の変化\n所得\n雇用\n年齢構成\nその他の地域特性"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#データを見てみる",
+    "href": "lecture-ryukoku.html#データを見てみる",
+    "title": "データ分析と問題解決",
+    "section": "3. データを見てみる",
+    "text": "3. データを見てみる\nまずデータの構造を確認します。\n\n# ここにデータ読み込みのコードを入れる\n\n\nデータの確認\n\n# head(data)"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#データを可視化する",
+    "href": "lecture-ryukoku.html#データを可視化する",
+    "title": "データ分析と問題解決",
+    "section": "4. データを可視化する",
+    "text": "4. データを可視化する\nまず、変数間の関係を図で確認します。\n\n# library(ggplot2)\n\n# ggplot(data, aes(x = population_change, y = income)) +\n#   geom_point()\n\n\n考えてみよう\n\nこのグラフから、どのような関係が読み取れるでしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#数字で関係を確認する",
+    "href": "lecture-ryukoku.html#数字で関係を確認する",
+    "title": "データ分析と問題解決",
+    "section": "5. 数字で関係を確認する",
+    "text": "5. 数字で関係を確認する\n例えば回帰分析を使って、変数間の関係を調べます。\n\n# model &lt;- lm(income ~ population_change, data = data)\n# summary(model)"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#分析結果をどう解釈するか",
+    "href": "lecture-ryukoku.html#分析結果をどう解釈するか",
+    "title": "データ分析と問題解決",
+    "section": "6. 分析結果をどう解釈するか",
+    "text": "6. 分析結果をどう解釈するか\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nしかし、\n\n人口減少が所得を低下させた\n\nと結論づけてよいでしょうか？\n\n考えられる別の説明\n\n地域経済の悪化が人口流出を引き起こしている\n産業構造が人口と所得の両方に影響している\n高齢化など別の要因が関係している"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#データから問題解決へ",
+    "href": "lecture-ryukoku.html#データから問題解決へ",
+    "title": "データ分析と問題解決",
+    "section": "7. データから問題解決へ",
+    "text": "7. データから問題解決へ\n分析結果を踏まえて、どのような政策が考えられるでしょうか？\n例えば、\n\n移住・定住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化\n\n\n最後の問い\n\nどの政策が有効かを判断するためには、さらにどのようなデータが必要でしょうか？"
+  },
+  {
+    "objectID": "lecture-ryukoku.html#今日のまとめ",
+    "href": "lecture-ryukoku.html#今日のまとめ",
+    "title": "データ分析と問題解決",
+    "section": "今日のまとめ",
+    "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
   }
 ]
