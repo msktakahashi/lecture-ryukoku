@@ -9,6 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
+  <meta name="author" content="髙橋 雅生">
   <title>データ分析と問題解決</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -101,6 +102,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <link rel="stylesheet" href="slides.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -201,11 +203,97 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">データ分析と問題解決</h1>
-  <p class="subtitle">データから社会問題を考える</p>
+  <p class="subtitle">模擬授業@龍谷大学</p>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+髙橋 雅生
+</div>
+</div>
 </div>
 
+</section>
+<section id="この授業の目標" class="slide level2">
+<h2>この授業の目標</h2>
+<div class="v-center">
+<ul>
+<li><p>解決したい問題を見つける</p></li>
+<li><p>「データ分析」を通して問題の原因を探る</p></li>
+<li><p>解決策を見出す</p></li>
+</ul>
+</div>
+</section>
+<section id="偉大な先人から学ぶ" class="slide level2">
+<h2>偉大な先人から学ぶ</h2>
+<div class="v-center">
+<ul>
+<li><p>19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（<strong>社会問題</strong>）</p></li>
+<li><p>コレラが流行する<strong>原因</strong>は何か？</p>
+<ul>
+<li>大気汚染？（当時はこちらの考え方が主流）</li>
+<li>水質汚染？</li>
+</ul></li>
+<li><p>原因に応じて<strong>解決策</strong>を見出す</p>
+<ul>
+<li>大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）</li>
+<li>水質汚染が原因 -&gt; 水質改善？</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="偉大な先人から学ぶ-1" class="slide level2">
+<h2>偉大な先人から学ぶ</h2>
+<div class="v-center">
+<div class="columns">
+<div class="column" style="width:40%;">
+<h4 id="john-snow-1813-1858">John Snow (1813-1858)</h4>
+<p><img data-src="images/John_Snow.jpg" style="width:70.0%"></p>
+</div><div class="column" style="width:60%;">
+<h4 id="snowがデータ分析で気づいたこと">Snowが「<strong>データ分析</strong>」で気づいたこと：</h4>
+<div class="small-text">
+<ul>
+<li>水道を供給する会社によってコレラによる死亡率が異なる</li>
+<li>ほとんどの死者がある特定の井戸を利用</li>
+<li>井戸近くのビール工場の従業員には重症者なし（水の代わりにビール飲んでる）</li>
+</ul>
+</div>
+<p>-&gt; <u>原因は水質にあるのでは？</u></p>
+</div></div>
+</div>
+</section>
+<section id="偉大な先人から学ぶ-2" class="slide level2">
+<h2>偉大な先人から学ぶ</h2>
+<div class="v-center">
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="コレラマップ">“コレラマップ”</h4>
+<p><img data-src="images/epidemiology-snow1.jpg" style="width:100.0%"></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>ある水道会社から水を引いていた井戸（赤）周辺の死者が多い</li>
+<li>ビール工場（緑）では重症者なし</li>
+<li><strong>この井戸を利用停止にしたら死者数が減少</strong></li>
+</ul>
+<p>-&gt;水質が原因であると特定</p>
+</div></div>
+</div>
+</section>
+<section id="偉大な先人から学ぶ-3" class="slide level2">
+<h2>偉大な先人から学ぶ</h2>
+<div class="v-center">
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="images/poster.png" style="width:80.0%"></p>
+</div><div class="column" style="width:60%;">
+<h4 id="解決策">解決策</h4>
+<ul>
+<li>上下水道の整備</li>
+<li>水は沸騰させてから飲む</li>
+</ul>
+<p>-&gt; コレラによる死者の激減</p>
+</div></div>
+</div>
 </section>
 <section id="今日の問い" class="slide level2">
 <h2>今日の問い</h2>

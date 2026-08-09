@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "lecture-ryukoku-slides.html#この授業の目標",
+    "href": "lecture-ryukoku-slides.html#この授業の目標",
+    "title": "データ分析と問題解決",
+    "section": "この授業の目標",
+    "text": "この授業の目標\n\n\n解決したい問題を見つける\n「データ分析」を通して問題の原因を探る\n解決策を見出す"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ",
+    "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ",
+    "title": "データ分析と問題解決",
+    "section": "偉大な先人から学ぶ",
+    "text": "偉大な先人から学ぶ\n\n\n19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（社会問題）\nコレラが流行する原因は何か？\n\n大気汚染？（当時はこちらの考え方が主流）\n水質汚染？\n\n原因に応じて解決策を見出す\n\n大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）\n水質汚染が原因 -&gt; 水質改善？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
+    "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
+    "title": "データ分析と問題解決",
+    "section": "偉大な先人から学ぶ",
+    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow (1813-1858)\n\n\nSnowが「データ分析」で気づいたこと：\n\n\n水道を供給する会社によってコレラによる死亡率が異なる\nほとんどの死者がある特定の井戸を利用\n井戸近くのビール工場の従業員には重症者なし（水の代わりにビール飲んでる）\n\n\n-&gt; 原因は水質にあるのでは？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
+    "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
+    "title": "データ分析と問題解決",
+    "section": "偉大な先人から学ぶ",
+    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nある水道会社から水を引いていた井戸（赤）周辺の死者が多い\nビール工場（緑）では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt;水質が原因であると特定"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
+    "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
+    "title": "データ分析と問題解決",
+    "section": "偉大な先人から学ぶ",
+    "text": "偉大な先人から学ぶ\n\n\n\n\n\n解決策\n\n上下水道の整備\n水は沸騰させてから飲む\n\n-&gt; コレラによる死者の激減"
+  },
+  {
     "objectID": "lecture-ryukoku-slides.html#今日の問い",
     "href": "lecture-ryukoku-slides.html#今日の問い",
     "title": "データ分析と問題解決",
@@ -98,55 +133,6 @@
     "text": "今日のTakeaway\n\nデータ分析とは、数字を計算することではなく、社会問題を検証可能な問いに変え、よりよい意思決定につなげることである。"
   },
   {
-    "objectID": "lecture01.html",
-    "href": "lecture01.html",
-    "title": "第1回：RとRStudioの基本",
-    "section": "",
-    "text": "第1回では、Rを使ったデータ分析の基本を学びます。"
-  },
-  {
-    "objectID": "lecture01.html#今日の内容",
-    "href": "lecture01.html#今日の内容",
-    "title": "第1回：RとRStudioの基本",
-    "section": "",
-    "text": "第1回では、Rを使ったデータ分析の基本を学びます。"
-  },
-  {
-    "objectID": "lecture01.html#rで計算する",
-    "href": "lecture01.html#rで計算する",
-    "title": "第1回：RとRStudioの基本",
-    "section": "Rで計算する",
-    "text": "Rで計算する\nまず簡単な計算をしてみましょう。\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "lecture01.html#データを見る",
-    "href": "lecture01.html#データを見る",
-    "title": "第1回：RとRStudioの基本",
-    "section": "データを見る",
-    "text": "データを見る\nRに標準で用意されている mtcars データを使います。\n\nhead(mtcars)\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1"
-  },
-  {
-    "objectID": "lecture01.html#記述統計量",
-    "href": "lecture01.html#記述統計量",
-    "title": "第1回：RとRStudioの基本",
-    "section": "記述統計量",
-    "text": "記述統計量\n\nsummary(mtcars)\n\n      mpg             cyl             disp             hp       \n Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  \n 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  \n Median :19.20   Median :6.000   Median :196.3   Median :123.0  \n Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  \n 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  \n Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  \n      drat             wt             qsec             vs        \n Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  \n 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  \n Median :3.695   Median :3.325   Median :17.71   Median :0.0000  \n Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  \n 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  \n Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  \n       am              gear            carb      \n Min.   :0.0000   Min.   :3.000   Min.   :1.000  \n 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  \n Median :0.0000   Median :4.000   Median :2.000  \n Mean   :0.4062   Mean   :3.688   Mean   :2.812  \n 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  \n Max.   :1.0000   Max.   :5.000   Max.   :8.000"
-  },
-  {
-    "objectID": "lecture01.html#グラフを描く",
-    "href": "lecture01.html#グラフを描く",
-    "title": "第1回：RとRStudioの基本",
-    "section": "グラフを描く",
-    "text": "グラフを描く\n車重と燃費の関係を見てみましょう。\n\nplot(\n  mtcars$wt,\n  mtcars$mpg,\n  xlab = \"Weight\",\n  ylab = \"MPG\"\n)"
-  },
-  {
-    "objectID": "lecture01.html#回帰分析",
-    "href": "lecture01.html#回帰分析",
-    "title": "第1回：RとRStudioの基本",
-    "section": "回帰分析",
-    "text": "回帰分析\n\nmodel &lt;- lm(mpg ~ wt, data = mtcars)\n\nsummary(model)\n\n\nCall:\nlm(formula = mpg ~ wt, data = mtcars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.5432 -2.3647 -0.1252  1.4096  6.8727 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 ***\nwt           -5.3445     0.5591  -9.559 1.29e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.046 on 30 degrees of freedom\nMultiple R-squared:  0.7528,    Adjusted R-squared:  0.7446 \nF-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "データ分析と問題解決",
@@ -217,80 +203,52 @@
     "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "lecture01.html",
+    "href": "lecture01.html",
+    "title": "第1回：RとRStudioの基本",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "第1回では、Rを使ったデータ分析の基本を学びます。"
   },
   {
-    "objectID": "lecture-ryukoku.html",
-    "href": "lecture-ryukoku.html",
-    "title": "データ分析と問題解決",
+    "objectID": "lecture01.html#今日の内容",
+    "href": "lecture01.html#今日の内容",
+    "title": "第1回：RとRStudioの基本",
     "section": "",
-    "text": "この授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+    "text": "第1回では、Rを使ったデータ分析の基本を学びます。"
   },
   {
-    "objectID": "lecture-ryukoku.html#今日のテーマ",
-    "href": "lecture-ryukoku.html#今日のテーマ",
-    "title": "データ分析と問題解決",
-    "section": "",
-    "text": "この授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+    "objectID": "lecture01.html#rで計算する",
+    "href": "lecture01.html#rで計算する",
+    "title": "第1回：RとRStudioの基本",
+    "section": "Rで計算する",
+    "text": "Rで計算する\nまず簡単な計算をしてみましょう。\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "lecture-ryukoku.html#社会問題を見つける",
-    "href": "lecture-ryukoku.html#社会問題を見つける",
-    "title": "データ分析と問題解決",
-    "section": "1. 社会問題を見つける",
-    "text": "1. 社会問題を見つける\n\n問題提起\nここに今回扱う社会問題を提示します。\n例えば、\n\n人口減少が進む地域では、地域経済にどのような変化が起きているのでしょうか？\n\n\n\n考えてみよう\n次の問いについて考えてみてください。\n\n人口減少によって何が起こると思いますか？\nそれをデータで調べるには、どのような変数が必要でしょうか？"
+    "objectID": "lecture01.html#データを見る",
+    "href": "lecture01.html#データを見る",
+    "title": "第1回：RとRStudioの基本",
+    "section": "データを見る",
+    "text": "データを見る\nRに標準で用意されている mtcars データを使います。\n\nhead(mtcars)\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1"
   },
   {
-    "objectID": "lecture-ryukoku.html#問いをデータで検証できる形にする",
-    "href": "lecture-ryukoku.html#問いをデータで検証できる形にする",
-    "title": "データ分析と問題解決",
-    "section": "2. 問いをデータで検証できる形にする",
-    "text": "2. 問いをデータで検証できる形にする\n社会問題を分析するためには、漠然とした問題を データで答えられる問いに変える必要があります。\n\n分析する問い\n\n人口減少が大きい地域ほど、地域経済も縮小しているのでしょうか？\n\n\n\n必要なデータ\n\n人口の変化\n所得\n雇用\n年齢構成\nその他の地域特性"
+    "objectID": "lecture01.html#記述統計量",
+    "href": "lecture01.html#記述統計量",
+    "title": "第1回：RとRStudioの基本",
+    "section": "記述統計量",
+    "text": "記述統計量\n\nsummary(mtcars)\n\n      mpg             cyl             disp             hp       \n Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  \n 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  \n Median :19.20   Median :6.000   Median :196.3   Median :123.0  \n Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  \n 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  \n Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  \n      drat             wt             qsec             vs        \n Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  \n 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  \n Median :3.695   Median :3.325   Median :17.71   Median :0.0000  \n Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  \n 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  \n Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  \n       am              gear            carb      \n Min.   :0.0000   Min.   :3.000   Min.   :1.000  \n 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  \n Median :0.0000   Median :4.000   Median :2.000  \n Mean   :0.4062   Mean   :3.688   Mean   :2.812  \n 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  \n Max.   :1.0000   Max.   :5.000   Max.   :8.000"
   },
   {
-    "objectID": "lecture-ryukoku.html#データを見てみる",
-    "href": "lecture-ryukoku.html#データを見てみる",
-    "title": "データ分析と問題解決",
-    "section": "3. データを見てみる",
-    "text": "3. データを見てみる\nまずデータの構造を確認します。\n\n# ここにデータ読み込みのコードを入れる\n\n\nデータの確認\n\n# head(data)"
+    "objectID": "lecture01.html#グラフを描く",
+    "href": "lecture01.html#グラフを描く",
+    "title": "第1回：RとRStudioの基本",
+    "section": "グラフを描く",
+    "text": "グラフを描く\n車重と燃費の関係を見てみましょう。\n\nplot(\n  mtcars$wt,\n  mtcars$mpg,\n  xlab = \"Weight\",\n  ylab = \"MPG\"\n)"
   },
   {
-    "objectID": "lecture-ryukoku.html#データを可視化する",
-    "href": "lecture-ryukoku.html#データを可視化する",
-    "title": "データ分析と問題解決",
-    "section": "4. データを可視化する",
-    "text": "4. データを可視化する\nまず、変数間の関係を図で確認します。\n\n# library(ggplot2)\n\n# ggplot(data, aes(x = population_change, y = income)) +\n#   geom_point()\n\n\n考えてみよう\n\nこのグラフから、どのような関係が読み取れるでしょうか？"
-  },
-  {
-    "objectID": "lecture-ryukoku.html#数字で関係を確認する",
-    "href": "lecture-ryukoku.html#数字で関係を確認する",
-    "title": "データ分析と問題解決",
-    "section": "5. 数字で関係を確認する",
-    "text": "5. 数字で関係を確認する\n例えば回帰分析を使って、変数間の関係を調べます。\n\n# model &lt;- lm(income ~ population_change, data = data)\n# summary(model)"
-  },
-  {
-    "objectID": "lecture-ryukoku.html#分析結果をどう解釈するか",
-    "href": "lecture-ryukoku.html#分析結果をどう解釈するか",
-    "title": "データ分析と問題解決",
-    "section": "6. 分析結果をどう解釈するか",
-    "text": "6. 分析結果をどう解釈するか\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nしかし、\n\n人口減少が所得を低下させた\n\nと結論づけてよいでしょうか？\n\n考えられる別の説明\n\n地域経済の悪化が人口流出を引き起こしている\n産業構造が人口と所得の両方に影響している\n高齢化など別の要因が関係している"
-  },
-  {
-    "objectID": "lecture-ryukoku.html#データから問題解決へ",
-    "href": "lecture-ryukoku.html#データから問題解決へ",
-    "title": "データ分析と問題解決",
-    "section": "7. データから問題解決へ",
-    "text": "7. データから問題解決へ\n分析結果を踏まえて、どのような政策が考えられるでしょうか？\n例えば、\n\n移住・定住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化\n\n\n最後の問い\n\nどの政策が有効かを判断するためには、さらにどのようなデータが必要でしょうか？"
-  },
-  {
-    "objectID": "lecture-ryukoku.html#今日のまとめ",
-    "href": "lecture-ryukoku.html#今日のまとめ",
-    "title": "データ分析と問題解決",
-    "section": "今日のまとめ",
-    "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
+    "objectID": "lecture01.html#回帰分析",
+    "href": "lecture01.html#回帰分析",
+    "title": "第1回：RとRStudioの基本",
+    "section": "回帰分析",
+    "text": "回帰分析\n\nmodel &lt;- lm(mpg ~ wt, data = mtcars)\n\nsummary(model)\n\n\nCall:\nlm(formula = mpg ~ wt, data = mtcars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.5432 -2.3647 -0.1252  1.4096  6.8727 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 ***\nwt           -5.3445     0.5591  -9.559 1.29e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.046 on 30 degrees of freedom\nMultiple R-squared:  0.7528,    Adjusted R-squared:  0.7446 \nF-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10"
   }
 ]

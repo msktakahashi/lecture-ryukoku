@@ -1,0 +1,14 @@
+.v-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70vh;
+}
+
+.small-text {
+  font-size: 0.80em;
+}
+
+.underline {
+  text-decoration: underline;
+}
