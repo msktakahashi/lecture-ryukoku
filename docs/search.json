@@ -35,6 +35,13 @@
     "text": "偉大な先人から学ぶ\n\n\n\n\n\n解決策\n\n上下水道の整備\n水は沸騰させてから飲む\n\n-&gt; コレラによる死者の激減"
   },
   {
+    "objectID": "lecture-ryukoku-slides.html#コレラマップの再現",
+    "href": "lecture-ryukoku-slides.html#コレラマップの再現",
+    "title": "データ分析と問題解決",
+    "section": "コレラマップの再現",
+    "text": "コレラマップの再現\n\n# install.packages(\"HistData\")\n# library(HistData)\n \n# data(Snow.deaths)\n# data(Snow.pumps)\n# data(Snow.streets)\n\n# head(Snow.deaths)\n# head(Snow.pumps)"
+  },
+  {
     "objectID": "lecture-ryukoku-slides.html#今日の問い",
     "href": "lecture-ryukoku-slides.html#今日の問い",
     "title": "データ分析と問題解決",
@@ -140,11 +147,11 @@
     "text": "講義スライド"
   },
   {
-    "objectID": "index.html#今日のテーマ",
-    "href": "index.html#今日のテーマ",
+    "objectID": "index.html#演習john-snow-の分析を再現してみる",
+    "href": "index.html#演習john-snow-の分析を再現してみる",
     "title": "データ分析と問題解決",
-    "section": "今日のテーマ",
-    "text": "今日のテーマ\nこの授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n今日の問い\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+    "section": "演習：John Snow の分析を再現してみる",
+    "text": "演習：John Snow の分析を再現してみる\n必要なパッケージをインストールする（Consoleで一度だけ実行すればよい）\n\n# install.packages(\"HistData\")\n# install.packages(\"SnowData\")\n# install.packages(\"ggplot2\")\n\nマップ作成テンプレート\n\nlibrary(HistData)\nlibrary(ggplot2)\n\ndata(\"Snow.streets\", package = \"HistData\")\ndata(\"Snow.deaths\", package = \"HistData\")\ndata(\"Snow.pumps\", package = \"HistData\")\n\nggplot() +\n  geom_path(\n    data = Snow.streets,\n    aes(x = x, y = y, group = street),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = Snow.deaths,\n    aes(x = x, y = y),\n    size = 1\n  ) +\n  geom_point(\n    data = Snow.pumps,\n    aes(x = x, y = y),\n    shape = 17,\n    size = 3\n  ) +\n  coord_fixed() +\n  theme_void()"
   },
   {
     "objectID": "index.html#社会問題を見つける",
@@ -198,6 +205,76 @@
   {
     "objectID": "index.html#今日のまとめ",
     "href": "index.html#今日のまとめ",
+    "title": "データ分析と問題解決",
+    "section": "今日のまとめ",
+    "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
+  },
+  {
+    "objectID": "index-old.html",
+    "href": "index-old.html",
+    "title": "データ分析と問題解決",
+    "section": "",
+    "text": "講義スライド"
+  },
+  {
+    "objectID": "index-old.html#演習ジョンスノウ",
+    "href": "index-old.html#演習ジョンスノウ",
+    "title": "データ分析と問題解決",
+    "section": "演習：ジョンスノウ",
+    "text": "演習：ジョンスノウ\nこの授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n今日の問い\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+  },
+  {
+    "objectID": "index-old.html#社会問題を見つける",
+    "href": "index-old.html#社会問題を見つける",
+    "title": "データ分析と問題解決",
+    "section": "1. 社会問題を見つける",
+    "text": "1. 社会問題を見つける\n\n問題提起\nここに今回扱う社会問題を提示します。\n例えば、\n\n人口減少が進む地域では、地域経済にどのような変化が起きているのでしょうか？\n\n\n\n考えてみよう\n次の問いについて考えてみてください。\n\n人口減少によって何が起こると思いますか？\nそれをデータで調べるには、どのような変数が必要でしょうか？"
+  },
+  {
+    "objectID": "index-old.html#問いをデータで検証できる形にする",
+    "href": "index-old.html#問いをデータで検証できる形にする",
+    "title": "データ分析と問題解決",
+    "section": "2. 問いをデータで検証できる形にする",
+    "text": "2. 問いをデータで検証できる形にする\n社会問題を分析するためには、漠然とした問題を データで答えられる問いに変える必要があります。\n\n分析する問い\n\n人口減少が大きい地域ほど、地域経済も縮小しているのでしょうか？\n\n\n\n必要なデータ\n\n人口の変化\n所得\n雇用\n年齢構成\nその他の地域特性"
+  },
+  {
+    "objectID": "index-old.html#データを見てみる",
+    "href": "index-old.html#データを見てみる",
+    "title": "データ分析と問題解決",
+    "section": "3. データを見てみる",
+    "text": "3. データを見てみる\nまずデータの構造を確認します。\n\n# ここにデータ読み込みのコードを入れる\n\n\nデータの確認\n\n# head(data)"
+  },
+  {
+    "objectID": "index-old.html#データを可視化する",
+    "href": "index-old.html#データを可視化する",
+    "title": "データ分析と問題解決",
+    "section": "4. データを可視化する",
+    "text": "4. データを可視化する\nまず、変数間の関係を図で確認します。\n\n# library(ggplot2)\n\n# ggplot(data, aes(x = population_change, y = income)) +\n#   geom_point()\n\n\n考えてみよう\n\nこのグラフから、どのような関係が読み取れるでしょうか？"
+  },
+  {
+    "objectID": "index-old.html#数字で関係を確認する",
+    "href": "index-old.html#数字で関係を確認する",
+    "title": "データ分析と問題解決",
+    "section": "5. 数字で関係を確認する",
+    "text": "5. 数字で関係を確認する\n例えば回帰分析を使って、変数間の関係を調べます。\n\n# model &lt;- lm(income ~ population_change, data = data)\n# summary(model)"
+  },
+  {
+    "objectID": "index-old.html#分析結果をどう解釈するか",
+    "href": "index-old.html#分析結果をどう解釈するか",
+    "title": "データ分析と問題解決",
+    "section": "6. 分析結果をどう解釈するか",
+    "text": "6. 分析結果をどう解釈するか\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nしかし、\n\n人口減少が所得を低下させた\n\nと結論づけてよいでしょうか？\n\n考えられる別の説明\n\n地域経済の悪化が人口流出を引き起こしている\n産業構造が人口と所得の両方に影響している\n高齢化など別の要因が関係している"
+  },
+  {
+    "objectID": "index-old.html#データから問題解決へ",
+    "href": "index-old.html#データから問題解決へ",
+    "title": "データ分析と問題解決",
+    "section": "7. データから問題解決へ",
+    "text": "7. データから問題解決へ\n分析結果を踏まえて、どのような政策が考えられるでしょうか？\n例えば、\n\n移住・定住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化\n\n\n最後の問い\n\nどの政策が有効かを判断するためには、さらにどのようなデータが必要でしょうか？"
+  },
+  {
+    "objectID": "index-old.html#今日のまとめ",
+    "href": "index-old.html#今日のまとめ",
     "title": "データ分析と問題解決",
     "section": "今日のまとめ",
     "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
