@@ -11,7 +11,11 @@ execute:
   message: false
 ---
 
-[講義スライド](lecture-ryukoku-slides.qmd)
+[講義スライド1](lecture-ryukoku-slides.qmd)
+
+[講義スライド2](snow_cholera_demo_slides.qmd)
+
+[講義スライド3](snowdata_cholera_demo_slides.qmd)
 
 ## 演習：John Snow の分析を再現してみる
 

@@ -42,109 +42,319 @@
     "text": "コレラマップの再現\n\n# install.packages(\"HistData\")\n# library(HistData)\n \n# data(Snow.deaths)\n# data(Snow.pumps)\n# data(Snow.streets)\n\n# head(Snow.deaths)\n# head(Snow.pumps)"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#今日の問い",
-    "href": "lecture-ryukoku-slides.html#今日の問い",
+    "objectID": "lecture-ryukoku-slides.html#使うデータ",
+    "href": "lecture-ryukoku-slides.html#使うデータ",
     "title": "データ分析と問題解決",
-    "section": "今日の問い",
-    "text": "今日の問い\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+    "section": "使うデータ",
+    "text": "使うデータ\n今回は SnowData パッケージを使います。\n\n# 初回のみ必要\n# install.packages(\"SnowData\")\n\nlibrary(SnowData)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nSnowData には、次のデータが含まれています。\n\ncholera_cases：コレラ死亡地点\npump_locations：井戸の位置\nstreets：道路の位置"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#身近な社会問題を考えてみよう",
-    "href": "lecture-ryukoku-slides.html#身近な社会問題を考えてみよう",
+    "objectID": "lecture-ryukoku-slides.html#データを読み込む",
+    "href": "lecture-ryukoku-slides.html#データを読み込む",
     "title": "データ分析と問題解決",
-    "section": "身近な社会問題を考えてみよう",
-    "text": "身近な社会問題を考えてみよう\n例えば、\n人口減少\n人口が減ると、地域では何が起こるでしょうか？\n\n\n地域経済の縮小？\n店舗の減少？\n公共交通の縮小？\n税収の減少？\n高齢化？"
+    "section": "データを読み込む",
+    "text": "データを読み込む\n\ndata(cholera_cases)\ndata(pump_locations)\ndata(streets)\n\nまず、死亡地点のデータを確認します。\n\nhead(cholera_cases)\n\n# A tibble: 6 × 5\n     id Count Angle Easting Northing\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1     1     1   311 529161.  181015.\n2     2     1   311 529188.  180982.\n3     3     2   216 529190.  181046.\n4     4     2   216 529184.  181041.\n5     5     1   126 529211.  181038.\n6     6     1   126 529227.  181015."
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#社会問題から問いへ",
-    "href": "lecture-ryukoku-slides.html#社会問題から問いへ",
+    "objectID": "lecture-ryukoku-slides.html#観測単位を確認する",
+    "href": "lecture-ryukoku-slides.html#観測単位を確認する",
     "title": "データ分析と問題解決",
-    "section": "社会問題から「問い」へ",
-    "text": "社会問題から「問い」へ\n「人口減少は問題だ」\nだけでは分析できません。\nデータで答えられる問いに変える\n\n人口減少が大きい地域ほど、地域経済も縮小しているのか？"
+    "section": "観測単位を確認する",
+    "text": "観測単位を確認する\n\n観測地点はいくつあるか？\n\n\nnrow(cholera_cases)\n\n[1] 317\n\n\n\n死亡者数の合計はいくつか？\n\n\nsum(cholera_cases$Count)\n\n[1] 573\n\n\n\n1地点で複数人が死亡している場所はあるか？\n\n\nsummary(cholera_cases$Count)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.000   1.000   1.000   1.808   2.000  18.000"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#何を測ればよいだろう",
-    "href": "lecture-ryukoku-slides.html#何を測ればよいだろう",
+    "objectID": "lecture-ryukoku-slides.html#井戸のデータを確認する",
+    "href": "lecture-ryukoku-slides.html#井戸のデータを確認する",
     "title": "データ分析と問題解決",
-    "section": "何を測ればよいだろう？",
-    "text": "何を測ればよいだろう？\n人口減少\nどう測る？\n地域経済\nどう測る？\n\n\n所得\n雇用\n事業所数\n小売販売額"
+    "section": "井戸のデータを確認する",
+    "text": "井戸のデータを確認する\n\nhead(pump_locations)\n\n# A tibble: 6 × 3\n     id Easting Northing\n  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1     1 529209.  180668.\n2     2 529296.  180796.\n3     3 529191.  181078.\n4     4 529181.  181193.\n5     5 529180.  181354.\n6     6 529310.  181388.\n\nnrow(pump_locations)\n\n[1] 13\n\n\nここでは、井戸の位置も同じ座標系で表されていることを確認します。"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#データを見てみよう",
-    "href": "lecture-ryukoku-slides.html#データを見てみよう",
+    "objectID": "lecture-ryukoku-slides.html#まず死亡地点だけを描く",
+    "href": "lecture-ryukoku-slides.html#まず死亡地点だけを描く",
     "title": "データ分析と問題解決",
-    "section": "データを見てみよう",
-    "text": "データを見てみよう\n\n# head(data)"
+    "section": "まず死亡地点だけを描く",
+    "text": "まず死亡地点だけを描く\n\nggplot(cholera_cases,\n       aes(x = Easting, y = Northing)) +\n  geom_point(aes(size = Count), alpha = 0.6) +\n  coord_fixed() +\n  theme_minimal()\n\n\n問い：\n\nこの図だけから何が分かるでしょうか。\n逆に、何は分からないでしょうか。"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#まず見る",
-    "href": "lecture-ryukoku-slides.html#まず見る",
+    "objectID": "lecture-ryukoku-slides.html#道路を追加する",
+    "href": "lecture-ryukoku-slides.html#道路を追加する",
     "title": "データ分析と問題解決",
-    "section": "まず「見る」",
-    "text": "まず「見る」\n\n# ggplot(data, aes(x = population_change,\n#                  y = income)) +\n#   geom_point()"
+    "section": "道路を追加する",
+    "text": "道路を追加する\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  coord_fixed() +\n  theme_void()"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#このグラフから何が言える",
-    "href": "lecture-ryukoku-slides.html#このグラフから何が言える",
+    "objectID": "lecture-ryukoku-slides.html#井戸を追加する",
+    "href": "lecture-ryukoku-slides.html#井戸を追加する",
     "title": "データ分析と問題解決",
-    "section": "このグラフから何が言える？",
-    "text": "このグラフから何が言える？\n\n皆さんなら、この図をどう解釈しますか？"
+    "section": "井戸を追加する",
+    "text": "井戸を追加する\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  geom_point(\n    data = pump_locations,\n    aes(x = Easting, y = Northing),\n    shape = 17,\n    size = 3\n  ) +\n  geom_text(\n    data = pump_locations,\n    aes(x = Easting, y = Northing, label = id),\n    nudge_y = 15,\n    size = 3\n  ) +\n  coord_fixed() +\n  theme_void()"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#数字で確かめる",
-    "href": "lecture-ryukoku-slides.html#数字で確かめる",
+    "objectID": "lecture-ryukoku-slides.html#図から仮説を立てる",
+    "href": "lecture-ryukoku-slides.html#図から仮説を立てる",
     "title": "データ分析と問題解決",
-    "section": "数字で確かめる",
-    "text": "数字で確かめる\n\n# model &lt;- lm(income ~ population_change,\n#             data = data)\n#\n# summary(model)"
+    "section": "図から仮説を立てる",
+    "text": "図から仮説を立てる\n学生への問い：\n\n死亡地点の分布を見ると、どの井戸が感染源として疑われるでしょうか。\nその理由は何でしょうか。\n\nここでのポイント：\n\n図を見る\nパターンを発見する\n仮説を立てる"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#ここで重要な問題",
-    "href": "lecture-ryukoku-slides.html#ここで重要な問題",
+    "objectID": "lecture-ryukoku-slides.html#近いを数値にする",
+    "href": "lecture-ryukoku-slides.html#近いを数値にする",
     "title": "データ分析と問題解決",
-    "section": "ここで重要な問題",
-    "text": "ここで重要な問題\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nでは……\n\n人口減少が所得を低下させたと言えるでしょうか？"
+    "section": "「近い」を数値にする",
+    "text": "「近い」を数値にする\n地図を見ると、ある井戸の近くに死亡地点が集中しているように見えます。\nでは、\n\n「井戸に近い」とは、データ上どのように表せばよいでしょうか。\n\nここでは、疑わしい井戸から各死亡地点までの距離を計算します。"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#相関-因果",
-    "href": "lecture-ryukoku-slides.html#相関-因果",
+    "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ",
+    "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ",
     "title": "データ分析と問題解決",
-    "section": "相関 ≠ 因果",
-    "text": "相関 ≠ 因果\n考えられる別の説明：\n\n地域経済の悪化 → 人口流出\n産業構造 → 人口と所得\n高齢化 → 人口と所得\n\nデータから何が言えて、何が言えないかを考えることが重要"
+    "section": "疑わしい井戸を選ぶ",
+    "text": "疑わしい井戸を選ぶ\nここでは例として、死亡者数で重みづけした中心に最も近い井戸を、 「疑わしい井戸」の候補として選びます。\n\ncenter_e &lt;- weighted.mean(cholera_cases$Easting,\n                          cholera_cases$Count)\ncenter_n &lt;- weighted.mean(cholera_cases$Northing,\n                          cholera_cases$Count)\n\nsuspected_pump &lt;- pump_locations |&gt;\n  mutate(\n    distance_to_center =\n      sqrt((Easting - center_e)^2 +\n             (Northing - center_n)^2)\n  ) |&gt;\n  slice_min(distance_to_center, n = 1)\n\nsuspected_pump\n\n# A tibble: 1 × 4\n     id Easting Northing distance_to_center\n  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;              &lt;dbl&gt;\n1     9 529396.  181026.               24.4"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#分析から問題解決へ",
-    "href": "lecture-ryukoku-slides.html#分析から問題解決へ",
+    "objectID": "lecture-ryukoku-slides.html#距離変数を作る",
+    "href": "lecture-ryukoku-slides.html#距離変数を作る",
     "title": "データ分析と問題解決",
-    "section": "分析から問題解決へ",
-    "text": "分析から問題解決へ\nでは、どのような政策が考えられるでしょうか？\n\n移住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化"
+    "section": "距離変数を作る",
+    "text": "距離変数を作る\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_to_pump =\n      sqrt((Easting - suspected_pump$Easting)^2 +\n             (Northing - suspected_pump$Northing)^2)\n  )\n\nhead(cholera_cases2)\n\n# A tibble: 6 × 6\n     id Count Angle Easting Northing distance_to_pump\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n1     1     1   311 529161.  181015.             235.\n2     2     1   311 529188.  180982.             212.\n3     3     2   216 529190.  181046.             206.\n4     4     2   216 529184.  181041.             212.\n5     5     1   126 529211.  181038.             185.\n6     6     1   126 529227.  181015.             169.\n\n\nここで、元のデータにはなかった distance_to_pump という変数を作りました。"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#もう一つの問い",
-    "href": "lecture-ryukoku-slides.html#もう一つの問い",
+    "objectID": "lecture-ryukoku-slides.html#距離と死亡者数の関係を見る",
+    "href": "lecture-ryukoku-slides.html#距離と死亡者数の関係を見る",
     "title": "データ分析と問題解決",
-    "section": "もう一つの問い",
-    "text": "もう一つの問い\n\nどの政策が有効かを判断するためには、どのようなデータが必要でしょうか？"
+    "section": "距離と死亡者数の関係を見る",
+    "text": "距離と死亡者数の関係を見る\n\nggplot(cholera_cases2,\n       aes(x = distance_to_pump, y = Count)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  theme_minimal()"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#データ分析による問題解決",
-    "href": "lecture-ryukoku-slides.html#データ分析による問題解決",
+    "objectID": "lecture-ryukoku-slides.html#回帰分析",
+    "href": "lecture-ryukoku-slides.html#回帰分析",
     "title": "データ分析と問題解決",
-    "section": "データ分析による問題解決",
-    "text": "データ分析による問題解決\n社会問題\n↓\n問いを立てる\n↓\nデータを集める\n↓\n分析する\n↓\n結果を解釈する\n↓\n解決策を考える"
+    "section": "回帰分析",
+    "text": "回帰分析\n次のような回帰モデルを考えます。\n\\[\n死亡者数_i\n=\n\\alpha\n+\n\\beta 井戸からの距離_i\n+\nu_i\n\\]\nもし\n\\[\n\\beta &lt; 0\n\\]\nであれば、\n\n井戸から遠い地点ほど、死亡者数が少ない\n\nという関係を表します。"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#今日のtakeaway",
-    "href": "lecture-ryukoku-slides.html#今日のtakeaway",
+    "objectID": "lecture-ryukoku-slides.html#回帰分析を行う",
+    "href": "lecture-ryukoku-slides.html#回帰分析を行う",
     "title": "データ分析と問題解決",
-    "section": "今日のTakeaway",
-    "text": "今日のTakeaway\n\nデータ分析とは、数字を計算することではなく、社会問題を検証可能な問いに変え、よりよい意思決定につなげることである。"
+    "section": "回帰分析を行う",
+    "text": "回帰分析を行う\n\nmodel &lt;- lm(Count ~ distance_to_pump,\n            data = cholera_cases2)\n\nsummary(model)\n\n\nCall:\nlm(formula = Count ~ distance_to_pump, data = cholera_cases2)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.3683 -0.8224 -0.4621  0.2764 15.6830 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)       2.395371   0.189118  12.666  &lt; 2e-16 ***\ndistance_to_pump -0.004365   0.001253  -3.483 0.000566 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.519 on 315 degrees of freedom\nMultiple R-squared:  0.03708,   Adjusted R-squared:  0.03402 \nF-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662\n\n\nここでは、図で見えた関係を数値で確認します。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#ここで考えるべきこと",
+    "href": "lecture-ryukoku-slides.html#ここで考えるべきこと",
+    "title": "データ分析と問題解決",
+    "section": "ここで考えるべきこと",
+    "text": "ここで考えるべきこと\nでは、この回帰結果から、\n\nこの井戸の水がコレラを引き起こした\n\nと結論づけられるでしょうか。\n答えは、そう簡単ではありません。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#この分析の限界",
+    "href": "lecture-ryukoku-slides.html#この分析の限界",
+    "title": "データ分析と問題解決",
+    "section": "この分析の限界",
+    "text": "この分析の限界\nこのデータで観察しているのは、 少なくとも1人の死亡者が出た地点です。\nしたがって、この回帰は、\n\n井戸に近い人ほど死亡しやすい\n\nことを直接示しているわけではありません。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#さらに必要なデータ",
+    "href": "lecture-ryukoku-slides.html#さらに必要なデータ",
+    "title": "データ分析と問題解決",
+    "section": "さらに必要なデータ",
+    "text": "さらに必要なデータ\nより厳密に考えるには、次のような情報が必要です。\n\n各地点に住んでいた人数\n死亡しなかった人の情報\n各世帯が実際に使っていた井戸\n所得や衛生環境\n直線距離ではなく、実際の移動距離"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#因果関係を考える",
+    "href": "lecture-ryukoku-slides.html#因果関係を考える",
+    "title": "データ分析と問題解決",
+    "section": "因果関係を考える",
+    "text": "因果関係を考える\n回帰分析の結果は、関係を数値で表すうえで有用です。\nしかし、\n\n関係があること\n\nと\n\n原因であること\n\nは同じではありません。\nこの違いを意識することが、データ分析では重要です。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#学生に出す演習問題基礎",
+    "href": "lecture-ryukoku-slides.html#学生に出す演習問題基礎",
+    "title": "データ分析と問題解決",
+    "section": "学生に出す演習問題：基礎",
+    "text": "学生に出す演習問題：基礎\n\ncholera_cases の観測地点数を確認しなさい。\n死亡者数の合計を求めなさい。\n死亡地点を散布図で表しなさい。\n井戸の位置を地図に追加しなさい。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#学生に出す演習問題応用",
+    "href": "lecture-ryukoku-slides.html#学生に出す演習問題応用",
+    "title": "データ分析と問題解決",
+    "section": "学生に出す演習問題：応用",
+    "text": "学生に出す演習問題：応用\n\n地図から、感染源として疑われる井戸を1つ選びなさい。\nその井戸から各死亡地点までの距離を計算しなさい。\n距離と死亡者数の関係を散布図で確認しなさい。\nlm() を使って、距離と死亡者数の関係を推定しなさい。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#学生に出す演習問題考察",
+    "href": "lecture-ryukoku-slides.html#学生に出す演習問題考察",
+    "title": "データ分析と問題解決",
+    "section": "学生に出す演習問題：考察",
+    "text": "学生に出す演習問題：考察\n\n回帰係数を自分の言葉で解釈しなさい。\nこの分析から言えることと言えないことを整理しなさい。\n因果関係を明らかにするには、どのような追加データが必要でしょうか。\n今回の分析を、現代の感染症対策に応用するとしたら、どのようなデータが必要でしょうか。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#この演習で身につける力",
+    "href": "lecture-ryukoku-slides.html#この演習で身につける力",
+    "title": "データ分析と問題解決",
+    "section": "この演習で身につける力",
+    "text": "この演習で身につける力\nこの演習では、Rで地図を作るだけではありません。\n\nデータの観測単位を確認する\n可視化によって仮説を立てる\n分析に必要な変数を作る\n回帰分析で関係を数値化する\n結果の限界を考える"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#授業全体への接続",
+    "href": "lecture-ryukoku-slides.html#授業全体への接続",
+    "title": "データ分析と問題解決",
+    "section": "授業全体への接続",
+    "text": "授業全体への接続\nこの授業では、今後も同じ流れで演習を行います。\n\n実社会の問いから出発する\nデータを確認する\nRで可視化・分析する\n結果を解釈する\n何が言えるか／言えないかを考える\n\n後半では、この流れを回帰分析や因果推論の考え方へとつなげます。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#まとめ",
+    "href": "lecture-ryukoku-slides.html#まとめ",
+    "title": "データ分析と問題解決",
+    "section": "まとめ",
+    "text": "まとめ\nジョン・スノウのコレラマップは、 データ分析の基本的な流れを学ぶための優れた題材です。\n\nデータを見る\n可視化する\n仮説を立てる\n変数を作る\n分析する\n限界を考える\n\nこの型を、授業全体を通じて繰り返し練習していきます。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#今日の位置づけ",
+    "href": "snow_cholera_demo_slides.html#今日の位置づけ",
+    "title": "データから社会問題を考える",
+    "section": "今日の位置づけ",
+    "text": "今日の位置づけ\nこの模擬授業では、データ分析演習の一部として、 実際のデータを使って社会問題を考える演習を紹介します。\n扱う題材は、1854年ロンドンのコレラ流行です。\n目標\n\nデータを確認する\n図を使ってパターンを発見する\n簡単な分析で関係を確認する\n結果から何が言えるか／言えないかを考える"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#授業で重視すること",
+    "href": "snow_cholera_demo_slides.html#授業で重視すること",
+    "title": "データから社会問題を考える",
+    "section": "授業で重視すること",
+    "text": "授業で重視すること\nこの授業では、Rの操作を覚えるだけではなく、 データ分析の一連の流れを身につけることを重視します。\n\n問いを立てる\nデータを確認する\n可視化する\n分析する\n解釈する\n限界を考える"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#今日のミニ演習",
+    "href": "snow_cholera_demo_slides.html#今日のミニ演習",
+    "title": "データから社会問題を考える",
+    "section": "今日のミニ演習",
+    "text": "今日のミニ演習\n問い：\n\n1854年、ロンドンのソーホー地区でコレラが流行しました。\n死亡地点と井戸の位置から、感染源を推測できるでしょうか。\n\nこの問いを、Rを使って考えていきます。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#使うデータ",
+    "href": "snow_cholera_demo_slides.html#使うデータ",
+    "title": "データから社会問題を考える",
+    "section": "使うデータ",
+    "text": "使うデータ\n今回は HistData パッケージに含まれるデータを使います。\n\nlibrary(HistData)\nlibrary(ggplot2)\n\n主に使うデータは次の3つです。\n\nSnow.deaths：コレラ死亡地点\nSnow.pumps：井戸の位置\nSnow.streets：道路の情報"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#まずデータを確認する",
+    "href": "snow_cholera_demo_slides.html#まずデータを確認する",
+    "title": "データから社会問題を考える",
+    "section": "まずデータを確認する",
+    "text": "まずデータを確認する\n分析を始める前に、まずデータの中身を確認します。\n\nhead(Snow.deaths)\n\n  case         x         y\n1    1 13.588010 11.095600\n2    2  9.878124 12.559180\n3    3 14.653980 10.180440\n4    4 15.220570  9.993003\n5    5 13.162650 12.963190\n6    6 13.806170  8.889046\n\n\n学生には、次の点を確認してもらいます。\n\n1行は何を表しているか\n変数 x と y は何を表しているか\n観測数はいくつあるか"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#死亡地点の数を確認する",
+    "href": "snow_cholera_demo_slides.html#死亡地点の数を確認する",
+    "title": "データから社会問題を考える",
+    "section": "死亡地点の数を確認する",
+    "text": "死亡地点の数を確認する\n\nnrow(Snow.deaths)\n\n[1] 578\n\n\n\nhead(Snow.pumps)\n\n  pump          label         x        y\n1    1  Oxford Market  8.651201 17.89160\n2    2    Castle St E 10.984780 18.51785\n3    3   Oxford St #1 13.378190 17.39454\n4    4   Oxford St #2 14.879830 17.80992\n5    5 Gt Marlborough  8.694768 14.90547\n6    6   Crown Chapel  8.864416 12.75354\n\n\nここでは、死亡地点と井戸の位置が座標データとして与えられていることを確認します。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#道路を描く",
+    "href": "snow_cholera_demo_slides.html#道路を描く",
+    "title": "データから社会問題を考える",
+    "section": "道路を描く",
+    "text": "道路を描く\nまず、道路だけを描いてみます。\n\nggplot() +\n  geom_path(\n    data = Snow.streets,\n    aes(x = x, y = y, group = street),\n    linewidth = 0.3\n  ) +\n  coord_fixed() +\n  theme_void()"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#死亡地点を追加する",
+    "href": "snow_cholera_demo_slides.html#死亡地点を追加する",
+    "title": "データから社会問題を考える",
+    "section": "死亡地点を追加する",
+    "text": "死亡地点を追加する\n次に、コレラによる死亡地点を追加します。\n\nggplot() +\n  geom_path(\n    data = Snow.streets,\n    aes(x = x, y = y, group = street),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = Snow.deaths,\n    aes(x = x, y = y),\n    size = 1\n  ) +\n  coord_fixed() +\n  theme_void()\n\n\n問い：\n\n死亡地点はランダムに分布しているでしょうか。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#井戸を追加する",
+    "href": "snow_cholera_demo_slides.html#井戸を追加する",
+    "title": "データから社会問題を考える",
+    "section": "井戸を追加する",
+    "text": "井戸を追加する\n最後に、井戸の位置を追加します。\n\nggplot() +\n  geom_path(\n    data = Snow.streets,\n    aes(x = x, y = y, group = street),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = Snow.deaths,\n    aes(x = x, y = y),\n    size = 1\n  ) +\n  geom_point(\n    data = Snow.pumps,\n    aes(x = x, y = y),\n    shape = 17,\n    size = 3\n  ) +\n  coord_fixed() +\n  theme_void()"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#図から何が読み取れるか",
+    "href": "snow_cholera_demo_slides.html#図から何が読み取れるか",
+    "title": "データから社会問題を考える",
+    "section": "図から何が読み取れるか",
+    "text": "図から何が読み取れるか\nこの地図を見ると、死亡地点が特定の井戸の周辺に集中しているように見えます。\nここで学生には、次のように問いかけます。\n\nどの井戸が感染源として疑われるでしょうか。\nその理由は何でしょうか。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#図で見えた関係を数値で考える",
+    "href": "snow_cholera_demo_slides.html#図で見えた関係を数値で考える",
+    "title": "データから社会問題を考える",
+    "section": "図で見えた関係を数値で考える",
+    "text": "図で見えた関係を数値で考える\n可視化によって、死亡地点と井戸の位置に関係がありそうだと分かりました。\n次に考えるべきことは、\n\nこの関係を、数値としてどのように確認できるか\n\nです。\nただし、ここで重要な注意点があります。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#このデータだけで回帰できるか",
+    "href": "snow_cholera_demo_slides.html#このデータだけで回帰できるか",
+    "title": "データから社会問題を考える",
+    "section": "このデータだけで回帰できるか",
+    "text": "このデータだけで回帰できるか\nSnow.deaths には、死亡した人の地点だけが含まれています。\nつまり、次の情報は含まれていません。\n\nその地域に住んでいた人数\n死亡しなかった人の情報\n各世帯が実際に使っていた井戸\n所得や衛生環境などの背景要因\n\nしたがって、このデータだけで\n\n井戸に近いほど死亡しやすい\n\nと厳密に分析することはできません。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#回帰分析に必要なデータを考える",
+    "href": "snow_cholera_demo_slides.html#回帰分析に必要なデータを考える",
+    "title": "データから社会問題を考える",
+    "section": "回帰分析に必要なデータを考える",
+    "text": "回帰分析に必要なデータを考える\n仮に地点ごとに死亡者数や人口が分かれば、次のような分析が考えられます。\n[ 死亡者数_i = + Broad Street Pumpからの距離_i + u_i ]\nここで、() が負であれば、\n\nBroad Street pumpに近い地点ほど死亡者数が多い\n\nという関係を示唆します。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#回帰結果をどう解釈するか",
+    "href": "snow_cholera_demo_slides.html#回帰結果をどう解釈するか",
+    "title": "データから社会問題を考える",
+    "section": "回帰結果をどう解釈するか",
+    "text": "回帰結果をどう解釈するか\n仮に、Broad Street pumpからの距離と死亡者数に強い関係が見つかったとします。\nしかし、そこから直ちに\n\nBroad Street pumpの水がコレラを引き起こした\n\nと結論づけてよいでしょうか。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#因果関係を考える",
+    "href": "snow_cholera_demo_slides.html#因果関係を考える",
+    "title": "データから社会問題を考える",
+    "section": "因果関係を考える",
+    "text": "因果関係を考える\n注意すべき点があります。\n\n人口密度が高い場所ほど死亡者数も多いかもしれない\n貧困や衛生環境が関係しているかもしれない\n近い井戸を実際に使っていたとは限らない\n地図上の距離と実際の行動は異なるかもしれない\n\nここから、\n\n回帰分析ができることと、因果関係を明らかにすることは同じではない\n\nという点を確認します。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#学生に出す演習問題基礎",
+    "href": "snow_cholera_demo_slides.html#学生に出す演習問題基礎",
+    "title": "データから社会問題を考える",
+    "section": "学生に出す演習問題：基礎",
+    "text": "学生に出す演習問題：基礎\n\nSnow.deaths の観測数を確認しなさい。\n道路、死亡地点、井戸を同じ図に表示しなさい。\n井戸を死亡地点とは異なる形で表示しなさい。\n地図から、感染源として疑われる井戸を考えなさい。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#学生に出す演習問題発展",
+    "href": "snow_cholera_demo_slides.html#学生に出す演習問題発展",
+    "title": "データから社会問題を考える",
+    "section": "学生に出す演習問題：発展",
+    "text": "学生に出す演習問題：発展\n\n感染源をより厳密に調べるには、どのような追加データが必要でしょうか。\nこの地図から言えることと言えないことを整理しなさい。\n回帰分析を行うとすれば、目的変数と説明変数には何を使えばよいでしょうか。\n因果関係を明らかにするためには、どのような比較が必要でしょうか。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#この演習で身につける力",
+    "href": "snow_cholera_demo_slides.html#この演習で身につける力",
+    "title": "データから社会問題を考える",
+    "section": "この演習で身につける力",
+    "text": "この演習で身につける力\nこの演習では、Rで地図を作るだけではありません。\n\nデータの構造を理解する\n可視化によってパターンを発見する\n分析に必要なデータを考える\n結果の解釈と限界を考える\n\nこうした流れを通じて、統計学を社会問題の理解に使う力を身につけます。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#授業全体への接続",
+    "href": "snow_cholera_demo_slides.html#授業全体への接続",
+    "title": "データから社会問題を考える",
+    "section": "授業全体への接続",
+    "text": "授業全体への接続\nこの授業では、今後も同じ流れで演習を行います。\n\n実社会の問いから出発する\nデータを確認する\nRで可視化・分析する\n結果を解釈する\n何が言えるか／言えないかを考える\n\n後半では、この流れを回帰分析や因果推論の考え方へとつなげていきます。"
+  },
+  {
+    "objectID": "snow_cholera_demo_slides.html#まとめ",
+    "href": "snow_cholera_demo_slides.html#まとめ",
+    "title": "データから社会問題を考える",
+    "section": "まとめ",
+    "text": "まとめ\nジョン・スノウのコレラマップは、 データ分析の基本的な流れを学ぶための優れた題材です。\n\nデータを見る\n可視化する\n仮説を立てる\n分析する\n限界を考える\n\nこの型を、授業全体を通じて繰り返し練習していきます。"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "データ分析と問題解決",
     "section": "",
-    "text": "講義スライド"
+    "text": "講義スライド1\n講義スライド2\n講義スライド3"
   },
   {
     "objectID": "index.html#演習john-snow-の分析を再現してみる",
@@ -210,74 +420,193 @@
     "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
   },
   {
-    "objectID": "index-old.html",
-    "href": "index-old.html",
-    "title": "データ分析と問題解決",
-    "section": "",
-    "text": "講義スライド"
+    "objectID": "snowdata_cholera_demo_slides.html#今日の位置づけ",
+    "href": "snowdata_cholera_demo_slides.html#今日の位置づけ",
+    "title": "データから社会問題を考える",
+    "section": "今日の位置づけ",
+    "text": "今日の位置づけ\nこの模擬授業では、データ分析演習の一部として、 実際のデータを使って社会問題を考える演習を紹介します。\n題材は、1854年ロンドン・ソーホー地区のコレラ流行です。\n今日の到達目標\n\nデータの中身を確認する\n地図を作ってパターンを発見する\n自分で新しい変数を作る\n簡単な回帰分析を行う\n結果から何が言えるか／言えないかを考える"
   },
   {
-    "objectID": "index-old.html#演習ジョンスノウ",
-    "href": "index-old.html#演習ジョンスノウ",
-    "title": "データ分析と問題解決",
-    "section": "演習：ジョンスノウ",
-    "text": "演習：ジョンスノウ\nこの授業では、データ分析を通じて社会問題を発見・理解し、 その解決策を考える方法を学びます。\n\n今日の問い\n\nデータを使って、社会問題についてどこまで明らかにできるでしょうか？"
+    "objectID": "snowdata_cholera_demo_slides.html#授業で重視すること",
+    "href": "snowdata_cholera_demo_slides.html#授業で重視すること",
+    "title": "データから社会問題を考える",
+    "section": "授業で重視すること",
+    "text": "授業で重視すること\nこの授業では、Rの操作だけでなく、 データ分析の一連の流れを身につけることを重視します。\n\n問いを立てる\nデータを確認する\n可視化する\n変数を作る\n分析する\n結果の限界を考える"
   },
   {
-    "objectID": "index-old.html#社会問題を見つける",
-    "href": "index-old.html#社会問題を見つける",
-    "title": "データ分析と問題解決",
-    "section": "1. 社会問題を見つける",
-    "text": "1. 社会問題を見つける\n\n問題提起\nここに今回扱う社会問題を提示します。\n例えば、\n\n人口減少が進む地域では、地域経済にどのような変化が起きているのでしょうか？\n\n\n\n考えてみよう\n次の問いについて考えてみてください。\n\n人口減少によって何が起こると思いますか？\nそれをデータで調べるには、どのような変数が必要でしょうか？"
+    "objectID": "snowdata_cholera_demo_slides.html#今日の問い",
+    "href": "snowdata_cholera_demo_slides.html#今日の問い",
+    "title": "データから社会問題を考える",
+    "section": "今日の問い",
+    "text": "今日の問い\n\n1854年、ロンドンのソーホー地区でコレラが流行しました。\n死亡地点と井戸の位置から、感染源を推測できるでしょうか。\n\nまずは、死亡地点を地図に表してみます。"
   },
   {
-    "objectID": "index-old.html#問いをデータで検証できる形にする",
-    "href": "index-old.html#問いをデータで検証できる形にする",
-    "title": "データ分析と問題解決",
-    "section": "2. 問いをデータで検証できる形にする",
-    "text": "2. 問いをデータで検証できる形にする\n社会問題を分析するためには、漠然とした問題を データで答えられる問いに変える必要があります。\n\n分析する問い\n\n人口減少が大きい地域ほど、地域経済も縮小しているのでしょうか？\n\n\n\n必要なデータ\n\n人口の変化\n所得\n雇用\n年齢構成\nその他の地域特性"
+    "objectID": "snowdata_cholera_demo_slides.html#使うデータ",
+    "href": "snowdata_cholera_demo_slides.html#使うデータ",
+    "title": "データから社会問題を考える",
+    "section": "使うデータ",
+    "text": "使うデータ\n今回は SnowData パッケージを使います。\n\n# 初回のみ必要\n# install.packages(\"SnowData\")\n\nlibrary(SnowData)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nSnowData には、次のデータが含まれています。\n\ncholera_cases：コレラ死亡地点\npump_locations：井戸の位置\nstreets：道路の位置"
   },
   {
-    "objectID": "index-old.html#データを見てみる",
-    "href": "index-old.html#データを見てみる",
-    "title": "データ分析と問題解決",
-    "section": "3. データを見てみる",
-    "text": "3. データを見てみる\nまずデータの構造を確認します。\n\n# ここにデータ読み込みのコードを入れる\n\n\nデータの確認\n\n# head(data)"
+    "objectID": "snowdata_cholera_demo_slides.html#データを読み込む",
+    "href": "snowdata_cholera_demo_slides.html#データを読み込む",
+    "title": "データから社会問題を考える",
+    "section": "データを読み込む",
+    "text": "データを読み込む\n\ndata(cholera_cases)\ndata(pump_locations)\ndata(streets)\n\nまず、死亡地点のデータを確認します。\n\nhead(cholera_cases)\n\n# A tibble: 6 × 5\n     id Count Angle Easting Northing\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1     1     1   311 529161.  181015.\n2     2     1   311 529188.  180982.\n3     3     2   216 529190.  181046.\n4     4     2   216 529184.  181041.\n5     5     1   126 529211.  181038.\n6     6     1   126 529227.  181015."
   },
   {
-    "objectID": "index-old.html#データを可視化する",
-    "href": "index-old.html#データを可視化する",
-    "title": "データ分析と問題解決",
-    "section": "4. データを可視化する",
-    "text": "4. データを可視化する\nまず、変数間の関係を図で確認します。\n\n# library(ggplot2)\n\n# ggplot(data, aes(x = population_change, y = income)) +\n#   geom_point()\n\n\n考えてみよう\n\nこのグラフから、どのような関係が読み取れるでしょうか？"
+    "objectID": "snowdata_cholera_demo_slides.html#観測単位を確認する",
+    "href": "snowdata_cholera_demo_slides.html#観測単位を確認する",
+    "title": "データから社会問題を考える",
+    "section": "観測単位を確認する",
+    "text": "観測単位を確認する\n\nnrow(cholera_cases)\n\n[1] 317\n\nsum(cholera_cases$Count)\n\n[1] 573\n\nsummary(cholera_cases$Count)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.000   1.000   1.000   1.808   2.000  18.000 \n\n\nここで確認すること：\n\n観測地点はいくつあるか\n死亡者数の合計はいくつか\n1地点で複数人が死亡している場所はあるか"
   },
   {
-    "objectID": "index-old.html#数字で関係を確認する",
-    "href": "index-old.html#数字で関係を確認する",
-    "title": "データ分析と問題解決",
-    "section": "5. 数字で関係を確認する",
-    "text": "5. 数字で関係を確認する\n例えば回帰分析を使って、変数間の関係を調べます。\n\n# model &lt;- lm(income ~ population_change, data = data)\n# summary(model)"
+    "objectID": "snowdata_cholera_demo_slides.html#井戸のデータを確認する",
+    "href": "snowdata_cholera_demo_slides.html#井戸のデータを確認する",
+    "title": "データから社会問題を考える",
+    "section": "井戸のデータを確認する",
+    "text": "井戸のデータを確認する\n\nhead(pump_locations)\n\n# A tibble: 6 × 3\n     id Easting Northing\n  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1     1 529209.  180668.\n2     2 529296.  180796.\n3     3 529191.  181078.\n4     4 529181.  181193.\n5     5 529180.  181354.\n6     6 529310.  181388.\n\nnrow(pump_locations)\n\n[1] 13\n\n\nここでは、井戸の位置も同じ座標系で表されていることを確認します。"
   },
   {
-    "objectID": "index-old.html#分析結果をどう解釈するか",
-    "href": "index-old.html#分析結果をどう解釈するか",
-    "title": "データ分析と問題解決",
-    "section": "6. 分析結果をどう解釈するか",
-    "text": "6. 分析結果をどう解釈するか\n仮に、\n\n人口減少が大きい地域ほど所得が低い\n\nという関係が見つかったとします。\nしかし、\n\n人口減少が所得を低下させた\n\nと結論づけてよいでしょうか？\n\n考えられる別の説明\n\n地域経済の悪化が人口流出を引き起こしている\n産業構造が人口と所得の両方に影響している\n高齢化など別の要因が関係している"
+    "objectID": "snowdata_cholera_demo_slides.html#まず死亡地点だけを描く",
+    "href": "snowdata_cholera_demo_slides.html#まず死亡地点だけを描く",
+    "title": "データから社会問題を考える",
+    "section": "まず死亡地点だけを描く",
+    "text": "まず死亡地点だけを描く\n\nggplot(cholera_cases,\n       aes(x = Easting, y = Northing)) +\n  geom_point(aes(size = Count), alpha = 0.6) +\n  coord_fixed() +\n  theme_minimal()\n\n\n問い：\n\nこの図だけから何が分かるでしょうか。\n逆に、何は分からないでしょうか。"
   },
   {
-    "objectID": "index-old.html#データから問題解決へ",
-    "href": "index-old.html#データから問題解決へ",
-    "title": "データ分析と問題解決",
-    "section": "7. データから問題解決へ",
-    "text": "7. データから問題解決へ\n分析結果を踏まえて、どのような政策が考えられるでしょうか？\n例えば、\n\n移住・定住支援\n子育て支援\n企業誘致\n公共交通への支援\n地域産業の活性化\n\n\n最後の問い\n\nどの政策が有効かを判断するためには、さらにどのようなデータが必要でしょうか？"
+    "objectID": "snowdata_cholera_demo_slides.html#道路を追加する",
+    "href": "snowdata_cholera_demo_slides.html#道路を追加する",
+    "title": "データから社会問題を考える",
+    "section": "道路を追加する",
+    "text": "道路を追加する\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  coord_fixed() +\n  theme_void()"
   },
   {
-    "objectID": "index-old.html#今日のまとめ",
-    "href": "index-old.html#今日のまとめ",
-    "title": "データ分析と問題解決",
-    "section": "今日のまとめ",
-    "text": "今日のまとめ\nデータ分析による問題解決は、\n社会問題 → 問い → データ → 分析 → 解釈 → 解決策\nというプロセスです。\nデータ分析の目的は単に数字を計算することではなく、\n\n社会問題を検証可能な問いに変え、よりよい意思決定につなげること\n\nです。"
+    "objectID": "snowdata_cholera_demo_slides.html#井戸を追加する",
+    "href": "snowdata_cholera_demo_slides.html#井戸を追加する",
+    "title": "データから社会問題を考える",
+    "section": "井戸を追加する",
+    "text": "井戸を追加する\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  geom_point(\n    data = pump_locations,\n    aes(x = Easting, y = Northing),\n    shape = 17,\n    size = 3\n  ) +\n  geom_text(\n    data = pump_locations,\n    aes(x = Easting, y = Northing, label = id),\n    nudge_y = 15,\n    size = 3\n  ) +\n  coord_fixed() +\n  theme_void()"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#図から仮説を立てる",
+    "href": "snowdata_cholera_demo_slides.html#図から仮説を立てる",
+    "title": "データから社会問題を考える",
+    "section": "図から仮説を立てる",
+    "text": "図から仮説を立てる\n学生への問い：\n\n死亡地点の分布を見ると、どの井戸が感染源として疑われるでしょうか。\nその理由は何でしょうか。\n\nここでのポイント：\n\n図を見る\nパターンを発見する\n仮説を立てる"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#近いを数値にする",
+    "href": "snowdata_cholera_demo_slides.html#近いを数値にする",
+    "title": "データから社会問題を考える",
+    "section": "「近い」を数値にする",
+    "text": "「近い」を数値にする\n地図を見ると、ある井戸の近くに死亡地点が集中しているように見えます。\nでは、\n\n「井戸に近い」とは、データ上どのように表せばよいでしょうか。\n\nここでは、疑わしい井戸から各死亡地点までの距離を計算します。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#疑わしい井戸を選ぶ",
+    "href": "snowdata_cholera_demo_slides.html#疑わしい井戸を選ぶ",
+    "title": "データから社会問題を考える",
+    "section": "疑わしい井戸を選ぶ",
+    "text": "疑わしい井戸を選ぶ\nここでは例として、死亡者数で重みづけした中心に最も近い井戸を、 「疑わしい井戸」の候補として選びます。\n\ncenter_e &lt;- weighted.mean(cholera_cases$Easting,\n                          cholera_cases$Count)\ncenter_n &lt;- weighted.mean(cholera_cases$Northing,\n                          cholera_cases$Count)\n\nsuspected_pump &lt;- pump_locations |&gt;\n  mutate(\n    distance_to_center =\n      sqrt((Easting - center_e)^2 +\n             (Northing - center_n)^2)\n  ) |&gt;\n  slice_min(distance_to_center, n = 1)\n\nsuspected_pump\n\n# A tibble: 1 × 4\n     id Easting Northing distance_to_center\n  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;              &lt;dbl&gt;\n1     9 529396.  181026.               24.4"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#距離変数を作る",
+    "href": "snowdata_cholera_demo_slides.html#距離変数を作る",
+    "title": "データから社会問題を考える",
+    "section": "距離変数を作る",
+    "text": "距離変数を作る\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_to_pump =\n      sqrt((Easting - suspected_pump$Easting)^2 +\n             (Northing - suspected_pump$Northing)^2)\n  )\n\nhead(cholera_cases2)\n\n# A tibble: 6 × 6\n     id Count Angle Easting Northing distance_to_pump\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n1     1     1   311 529161.  181015.             235.\n2     2     1   311 529188.  180982.             212.\n3     3     2   216 529190.  181046.             206.\n4     4     2   216 529184.  181041.             212.\n5     5     1   126 529211.  181038.             185.\n6     6     1   126 529227.  181015.             169.\n\n\nここで、元のデータにはなかった distance_to_pump という変数を作りました。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#距離と死亡者数の関係を見る",
+    "href": "snowdata_cholera_demo_slides.html#距離と死亡者数の関係を見る",
+    "title": "データから社会問題を考える",
+    "section": "距離と死亡者数の関係を見る",
+    "text": "距離と死亡者数の関係を見る\n\nggplot(cholera_cases2,\n       aes(x = distance_to_pump, y = Count)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  theme_minimal()\n\n\n問い：\n\n井戸から遠くなるほど、死亡者数はどのように変化しているでしょうか。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#回帰分析を行う",
+    "href": "snowdata_cholera_demo_slides.html#回帰分析を行う",
+    "title": "データから社会問題を考える",
+    "section": "回帰分析を行う",
+    "text": "回帰分析を行う\n\nmodel &lt;- lm(Count ~ distance_to_pump,\n            data = cholera_cases2)\n\nsummary(model)\n\n\nCall:\nlm(formula = Count ~ distance_to_pump, data = cholera_cases2)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.3683 -0.8224 -0.4621  0.2764 15.6830 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)       2.395371   0.189118  12.666  &lt; 2e-16 ***\ndistance_to_pump -0.004365   0.001253  -3.483 0.000566 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.519 on 315 degrees of freedom\nMultiple R-squared:  0.03708,   Adjusted R-squared:  0.03402 \nF-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662\n\n\nここでは、図で見えた関係を数値で確認します。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#係数を解釈する",
+    "href": "snowdata_cholera_demo_slides.html#係数を解釈する",
+    "title": "データから社会問題を考える",
+    "section": "係数を解釈する",
+    "text": "係数を解釈する\n回帰式は次のように表せます。\n[ 死亡者数_i = + 井戸からの距離_i + u_i ]\n() が負であれば、\n\n井戸から遠い地点ほど、死亡者数が少ない\n\nという関係を表します。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#ここで考えるべきこと",
+    "href": "snowdata_cholera_demo_slides.html#ここで考えるべきこと",
+    "title": "データから社会問題を考える",
+    "section": "ここで考えるべきこと",
+    "text": "ここで考えるべきこと\nでは、この回帰結果から、\n\nこの井戸の水がコレラを引き起こした\n\nと結論づけられるでしょうか。\n答えは、そう簡単ではありません。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#この分析の限界",
+    "href": "snowdata_cholera_demo_slides.html#この分析の限界",
+    "title": "データから社会問題を考える",
+    "section": "この分析の限界",
+    "text": "この分析の限界\nこのデータで観察しているのは、 少なくとも1人の死亡者が出た地点です。\nしたがって、この回帰は、\n\n井戸に近い人ほど死亡しやすい\n\nことを直接示しているわけではありません。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#さらに必要なデータ",
+    "href": "snowdata_cholera_demo_slides.html#さらに必要なデータ",
+    "title": "データから社会問題を考える",
+    "section": "さらに必要なデータ",
+    "text": "さらに必要なデータ\nより厳密に考えるには、次のような情報が必要です。\n\n各地点に住んでいた人数\n死亡しなかった人の情報\n各世帯が実際に使っていた井戸\n所得や衛生環境\n直線距離ではなく、実際の移動距離"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#因果関係を考える",
+    "href": "snowdata_cholera_demo_slides.html#因果関係を考える",
+    "title": "データから社会問題を考える",
+    "section": "因果関係を考える",
+    "text": "因果関係を考える\n回帰分析の結果は、関係を数値で表すうえで有用です。\nしかし、\n\n関係があること\n\nと\n\n原因であること\n\nは同じではありません。\nこの違いを意識することが、データ分析では重要です。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#学生に出す演習問題基礎",
+    "href": "snowdata_cholera_demo_slides.html#学生に出す演習問題基礎",
+    "title": "データから社会問題を考える",
+    "section": "学生に出す演習問題：基礎",
+    "text": "学生に出す演習問題：基礎\n\ncholera_cases の観測地点数を確認しなさい。\n死亡者数の合計を求めなさい。\n死亡地点を散布図で表しなさい。\n井戸の位置を地図に追加しなさい。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#学生に出す演習問題応用",
+    "href": "snowdata_cholera_demo_slides.html#学生に出す演習問題応用",
+    "title": "データから社会問題を考える",
+    "section": "学生に出す演習問題：応用",
+    "text": "学生に出す演習問題：応用\n\n地図から、感染源として疑われる井戸を1つ選びなさい。\nその井戸から各死亡地点までの距離を計算しなさい。\n距離と死亡者数の関係を散布図で確認しなさい。\nlm() を使って、距離と死亡者数の関係を推定しなさい。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#学生に出す演習問題考察",
+    "href": "snowdata_cholera_demo_slides.html#学生に出す演習問題考察",
+    "title": "データから社会問題を考える",
+    "section": "学生に出す演習問題：考察",
+    "text": "学生に出す演習問題：考察\n\n回帰係数を自分の言葉で解釈しなさい。\nこの分析から言えることと言えないことを整理しなさい。\n因果関係を明らかにするには、どのような追加データが必要でしょうか。\n今回の分析を、現代の感染症対策に応用するとしたら、どのようなデータが必要でしょうか。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#この演習で身につける力",
+    "href": "snowdata_cholera_demo_slides.html#この演習で身につける力",
+    "title": "データから社会問題を考える",
+    "section": "この演習で身につける力",
+    "text": "この演習で身につける力\nこの演習では、Rで地図を作るだけではありません。\n\nデータの観測単位を確認する\n可視化によって仮説を立てる\n分析に必要な変数を作る\n回帰分析で関係を数値化する\n結果の限界を考える"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#授業全体への接続",
+    "href": "snowdata_cholera_demo_slides.html#授業全体への接続",
+    "title": "データから社会問題を考える",
+    "section": "授業全体への接続",
+    "text": "授業全体への接続\nこの授業では、今後も同じ流れで演習を行います。\n\n実社会の問いから出発する\nデータを確認する\nRで可視化・分析する\n結果を解釈する\n何が言えるか／言えないかを考える\n\n後半では、この流れを回帰分析や因果推論の考え方へとつなげます。"
+  },
+  {
+    "objectID": "snowdata_cholera_demo_slides.html#まとめ",
+    "href": "snowdata_cholera_demo_slides.html#まとめ",
+    "title": "データから社会問題を考える",
+    "section": "まとめ",
+    "text": "まとめ\nジョン・スノウのコレラマップは、 データ分析の基本的な流れを学ぶための優れた題材です。\n\nデータを見る\n可視化する\n仮説を立てる\n変数を作る\n分析する\n限界を考える\n\nこの型を、授業全体を通じて繰り返し練習していきます。"
   },
   {
     "objectID": "lecture01.html",

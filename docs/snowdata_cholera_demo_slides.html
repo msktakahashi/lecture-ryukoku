@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="髙橋 雅生">
-  <title>データ分析と問題解決</title>
+  <title>データ分析と問題解決 – データから社会問題を考える</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -101,13 +101,10 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
-  <link rel="stylesheet" href="slides.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-8f256d708726d40fbff7d707db68e007.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -202,8 +199,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">データ分析と問題解決</h1>
-  <p class="subtitle">模擬授業@龍谷大学</p>
+  <h1 class="title">データから社会問題を考える</h1>
+  <p class="subtitle">SnowDataで再現するジョン・スノウのコレラマップ</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -214,111 +211,49 @@
 </div>
 
 </section>
-<section id="この授業の目標" class="slide level2">
-<h2>この授業の目標</h2>
-<div class="v-center">
+<section id="今日の位置づけ" class="slide level2">
+<h2>今日の位置づけ</h2>
+<p>この模擬授業では、データ分析演習の一部として、 <strong>実際のデータを使って社会問題を考える演習</strong>を紹介します。</p>
+<p>題材は、1854年ロンドン・ソーホー地区のコレラ流行です。</p>
+<p><strong>今日の到達目標</strong></p>
 <ul>
-<li><p>解決したい問題を見つける</p></li>
-<li><p>「データ分析」を通して問題の原因を探る</p></li>
-<li><p>解決策を見出す</p></li>
+<li>データの中身を確認する</li>
+<li>地図を作ってパターンを発見する</li>
+<li>自分で新しい変数を作る</li>
+<li>簡単な回帰分析を行う</li>
+<li>結果から何が言えるか／言えないかを考える</li>
 </ul>
-</div>
 </section>
-<section id="偉大な先人から学ぶ" class="slide level2">
-<h2>偉大な先人から学ぶ</h2>
-<div class="v-center">
-<ul>
-<li><p>19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（<strong>社会問題</strong>）</p></li>
-<li><p>コレラが流行する<strong>原因</strong>は何か？</p>
-<ul>
-<li>大気汚染？（当時はこちらの考え方が主流）</li>
-<li>水質汚染？</li>
-</ul></li>
-<li><p>原因に応じて<strong>解決策</strong>を見出す</p>
-<ul>
-<li>大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）</li>
-<li>水質汚染が原因 -&gt; 水質改善？</li>
-</ul></li>
-</ul>
-</div>
+<section id="授業で重視すること" class="slide level2">
+<h2>授業で重視すること</h2>
+<p>この授業では、Rの操作だけでなく、 データ分析の一連の流れを身につけることを重視します。</p>
+<ol type="1">
+<li>問いを立てる</li>
+<li>データを確認する</li>
+<li>可視化する</li>
+<li>変数を作る</li>
+<li>分析する</li>
+<li>結果の限界を考える</li>
+</ol>
 </section>
-<section id="偉大な先人から学ぶ-1" class="slide level2">
-<h2>偉大な先人から学ぶ</h2>
-<div class="v-center">
-<div class="columns">
-<div class="column" style="width:40%;">
-<h4 id="john-snow-1813-1858">John Snow (1813-1858)</h4>
-<p><img data-src="images/John_Snow.jpg" style="width:70.0%"></p>
-</div><div class="column" style="width:60%;">
-<h4 id="snowがデータ分析で気づいたこと">Snowが「<strong>データ分析</strong>」で気づいたこと：</h4>
-<div class="small-text">
-<ul>
-<li>水道を供給する会社によってコレラによる死亡率が異なる</li>
-<li>ほとんどの死者がある特定の井戸を利用</li>
-<li>井戸近くのビール工場の従業員には重症者なし（水の代わりにビール飲んでる）</li>
-</ul>
-</div>
-<p>-&gt; <u>原因は水質にあるのでは？</u></p>
-</div></div>
-</div>
-</section>
-<section id="偉大な先人から学ぶ-2" class="slide level2">
-<h2>偉大な先人から学ぶ</h2>
-<div class="v-center">
-<div class="columns">
-<div class="column" style="width:50%;">
-<h4 id="コレラマップ">“コレラマップ”</h4>
-<p><img data-src="images/epidemiology-snow1.jpg" style="width:100.0%"></p>
-</div><div class="column" style="width:50%;">
-<ul>
-<li>ある水道会社から水を引いていた井戸（赤）周辺の死者が多い</li>
-<li>ビール工場（緑）では重症者なし</li>
-<li><strong>この井戸を利用停止にしたら死者数が減少</strong></li>
-</ul>
-<p>-&gt;水質が原因であると特定</p>
-</div></div>
-</div>
-</section>
-<section id="偉大な先人から学ぶ-3" class="slide level2">
-<h2>偉大な先人から学ぶ</h2>
-<div class="v-center">
-<div class="columns">
-<div class="column" style="width:40%;">
-<p><img data-src="images/poster.png" style="width:80.0%"></p>
-</div><div class="column" style="width:60%;">
-<h4 id="解決策">解決策</h4>
-<ul>
-<li>上下水道の整備</li>
-<li>水は沸騰させてから飲む</li>
-</ul>
-<p>-&gt; コレラによる死者の激減</p>
-</div></div>
-</div>
-</section>
-<section id="コレラマップの再現" class="slide level2">
-<h2>コレラマップの再現</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="co"># install.packages("HistData")</span></span>
-<span id="cb1-2"><a aria-label="2"></a><span class="co"># library(HistData)</span></span>
-<span id="cb1-3"><a aria-label="3"></a> </span>
-<span id="cb1-4"><a aria-label="4"></a><span class="co"># data(Snow.deaths)</span></span>
-<span id="cb1-5"><a aria-label="5"></a><span class="co"># data(Snow.pumps)</span></span>
-<span id="cb1-6"><a aria-label="6"></a><span class="co"># data(Snow.streets)</span></span>
-<span id="cb1-7"><a aria-label="7"></a></span>
-<span id="cb1-8"><a aria-label="8"></a><span class="co"># head(Snow.deaths)</span></span>
-<span id="cb1-9"><a aria-label="9"></a><span class="co"># head(Snow.pumps)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="今日の問い" class="slide level2">
+<h2>今日の問い</h2>
+<blockquote>
+<p>1854年、ロンドンのソーホー地区でコレラが流行しました。<br>
+死亡地点と井戸の位置から、感染源を推測できるでしょうか。</p>
+</blockquote>
+<p>まずは、死亡地点を地図に表してみます。</p>
 </section>
 <section id="使うデータ" class="slide level2">
 <h2>使うデータ</h2>
 <p>今回は <code>SnowData</code> パッケージを使います。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="co"># 初回のみ必要</span></span>
-<span id="cb2-2"><a aria-label="2"></a><span class="co"># install.packages("SnowData")</span></span>
-<span id="cb2-3"><a aria-label="3"></a></span>
-<span id="cb2-4"><a aria-label="4"></a><span class="fu">library</span>(SnowData)</span>
-<span id="cb2-5"><a aria-label="5"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-6"><a aria-label="6"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># 初回のみ必要</span></span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("SnowData")</span></span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SnowData)</span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>SnowData</code> には、次のデータが含まれています。</p>
 <ul>
@@ -330,13 +265,13 @@
 <section id="データを読み込む" class="slide level2">
 <h2>データを読み込む</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="fu">data</span>(cholera_cases)</span>
-<span id="cb3-2"><a aria-label="2"></a><span class="fu">data</span>(pump_locations)</span>
-<span id="cb3-3"><a aria-label="3"></a><span class="fu">data</span>(streets)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cholera_cases)</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(pump_locations)</span>
+<span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(streets)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>まず、死亡地点のデータを確認します。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">head</span>(cholera_cases)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cholera_cases)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
      id Count Angle Easting Northing
@@ -352,39 +287,32 @@
 </section>
 <section id="観測単位を確認する" class="slide level2">
 <h2>観測単位を確認する</h2>
-<ul>
-<li>観測地点はいくつあるか？</li>
-</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="fu">nrow</span>(cholera_cases)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(cholera_cases)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 317</code></pre>
 </div>
-</div>
-<ul>
-<li>死亡者数の合計はいくつか？</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="fu">sum</span>(cholera_cases<span class="sc">$</span>Count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cholera_cases<span class="sc">$</span>Count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 573</code></pre>
 </div>
-</div>
-<ul>
-<li>1地点で複数人が死亡している場所はあるか？</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">summary</span>(cholera_cases<span class="sc">$</span>Count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cholera_cases<span class="sc">$</span>Count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   1.000   1.000   1.000   1.808   2.000  18.000 </code></pre>
 </div>
 </div>
+<p>ここで確認すること：</p>
+<ul>
+<li>観測地点はいくつあるか</li>
+<li>死亡者数の合計はいくつか</li>
+<li>1地点で複数人が死亡している場所はあるか</li>
+</ul>
 </section>
 <section id="井戸のデータを確認する" class="slide level2">
 <h2>井戸のデータを確認する</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a><span class="fu">head</span>(pump_locations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pump_locations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
      id Easting Northing
@@ -396,7 +324,7 @@
 5     5 529180.  181354.
 6     6 529310.  181388.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a><span class="fu">nrow</span>(pump_locations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pump_locations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13</code></pre>
 </div>
@@ -406,14 +334,14 @@
 <section id="まず死亡地点だけを描く" class="slide level2">
 <h2>まず死亡地点だけを描く</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a><span class="fu">ggplot</span>(cholera_cases,</span>
-<span id="cb16-2"><a aria-label="2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing)) <span class="sc">+</span></span>
-<span id="cb16-3"><a aria-label="3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> Count), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a aria-label="4"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a aria-label="5"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cholera_cases,</span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing)) <span class="sc">+</span></span>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> Count), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="lecture-ryukoku-slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><p>問い：</p>
+<img data-src="snowdata_cholera_demo_slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><p>問い：</p>
 <blockquote>
 <p>この図だけから何が分かるでしょうか。<br>
 逆に、何は分からないでしょうか。</p>
@@ -422,63 +350,63 @@
 <section id="道路を追加する" class="slide level2">
 <h2>道路を追加する</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb17-2"><a aria-label="2"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb17-3"><a aria-label="3"></a>    <span class="at">data =</span> streets,</span>
-<span id="cb17-4"><a aria-label="4"></a>    <span class="fu">aes</span>(</span>
-<span id="cb17-5"><a aria-label="5"></a>      <span class="at">x =</span> start_coord_east,</span>
-<span id="cb17-6"><a aria-label="6"></a>      <span class="at">y =</span> start_coord_north,</span>
-<span id="cb17-7"><a aria-label="7"></a>      <span class="at">xend =</span> end_coord_east,</span>
-<span id="cb17-8"><a aria-label="8"></a>      <span class="at">yend =</span> end_coord_north</span>
-<span id="cb17-9"><a aria-label="9"></a>    ),</span>
-<span id="cb17-10"><a aria-label="10"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
-<span id="cb17-11"><a aria-label="11"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-12"><a aria-label="12"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb17-13"><a aria-label="13"></a>    <span class="at">data =</span> cholera_cases,</span>
-<span id="cb17-14"><a aria-label="14"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing, <span class="at">size =</span> Count),</span>
-<span id="cb17-15"><a aria-label="15"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
-<span id="cb17-16"><a aria-label="16"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-17"><a aria-label="17"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb17-18"><a aria-label="18"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> streets,</span>
+<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> start_coord_east,</span>
+<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> start_coord_north,</span>
+<span id="cb16-7"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> end_coord_east,</span>
+<span id="cb16-8"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> end_coord_north</span>
+<span id="cb16-9"><a aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
+<span id="cb16-11"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb16-13"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cholera_cases,</span>
+<span id="cb16-14"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing, <span class="at">size =</span> Count),</span>
+<span id="cb16-15"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
+<span id="cb16-16"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb16-18"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="lecture-ryukoku-slides_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="snowdata_cholera_demo_slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="井戸を追加する" class="slide level2">
 <h2>井戸を追加する</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb18-2"><a aria-label="2"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb18-3"><a aria-label="3"></a>    <span class="at">data =</span> streets,</span>
-<span id="cb18-4"><a aria-label="4"></a>    <span class="fu">aes</span>(</span>
-<span id="cb18-5"><a aria-label="5"></a>      <span class="at">x =</span> start_coord_east,</span>
-<span id="cb18-6"><a aria-label="6"></a>      <span class="at">y =</span> start_coord_north,</span>
-<span id="cb18-7"><a aria-label="7"></a>      <span class="at">xend =</span> end_coord_east,</span>
-<span id="cb18-8"><a aria-label="8"></a>      <span class="at">yend =</span> end_coord_north</span>
-<span id="cb18-9"><a aria-label="9"></a>    ),</span>
-<span id="cb18-10"><a aria-label="10"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
-<span id="cb18-11"><a aria-label="11"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-12"><a aria-label="12"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb18-13"><a aria-label="13"></a>    <span class="at">data =</span> cholera_cases,</span>
-<span id="cb18-14"><a aria-label="14"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing, <span class="at">size =</span> Count),</span>
-<span id="cb18-15"><a aria-label="15"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
-<span id="cb18-16"><a aria-label="16"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-17"><a aria-label="17"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb18-18"><a aria-label="18"></a>    <span class="at">data =</span> pump_locations,</span>
-<span id="cb18-19"><a aria-label="19"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing),</span>
-<span id="cb18-20"><a aria-label="20"></a>    <span class="at">shape =</span> <span class="dv">17</span>,</span>
-<span id="cb18-21"><a aria-label="21"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb18-22"><a aria-label="22"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-23"><a aria-label="23"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb18-24"><a aria-label="24"></a>    <span class="at">data =</span> pump_locations,</span>
-<span id="cb18-25"><a aria-label="25"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing, <span class="at">label =</span> id),</span>
-<span id="cb18-26"><a aria-label="26"></a>    <span class="at">nudge_y =</span> <span class="dv">15</span>,</span>
-<span id="cb18-27"><a aria-label="27"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb18-28"><a aria-label="28"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-29"><a aria-label="29"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb18-30"><a aria-label="30"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> streets,</span>
+<span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> start_coord_east,</span>
+<span id="cb17-6"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> start_coord_north,</span>
+<span id="cb17-7"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> end_coord_east,</span>
+<span id="cb17-8"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> end_coord_north</span>
+<span id="cb17-9"><a aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb17-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
+<span id="cb17-11"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb17-13"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cholera_cases,</span>
+<span id="cb17-14"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing, <span class="at">size =</span> Count),</span>
+<span id="cb17-15"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
+<span id="cb17-16"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb17-18"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pump_locations,</span>
+<span id="cb17-19"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing),</span>
+<span id="cb17-20"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">17</span>,</span>
+<span id="cb17-21"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb17-22"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-23"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb17-24"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pump_locations,</span>
+<span id="cb17-25"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Easting, <span class="at">y =</span> Northing, <span class="at">label =</span> id),</span>
+<span id="cb17-26"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">nudge_y =</span> <span class="dv">15</span>,</span>
+<span id="cb17-27"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb17-28"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-29"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb17-30"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="lecture-ryukoku-slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="snowdata_cholera_demo_slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="図から仮説を立てる" class="slide level2">
 <h2>図から仮説を立てる</h2>
 <p>学生への問い：</p>
@@ -506,20 +434,20 @@
 <h2>疑わしい井戸を選ぶ</h2>
 <p>ここでは例として、死亡者数で重みづけした中心に最も近い井戸を、 「疑わしい井戸」の候補として選びます。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-label="1"></a>center_e <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(cholera_cases<span class="sc">$</span>Easting,</span>
-<span id="cb19-2"><a aria-label="2"></a>                          cholera_cases<span class="sc">$</span>Count)</span>
-<span id="cb19-3"><a aria-label="3"></a>center_n <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(cholera_cases<span class="sc">$</span>Northing,</span>
-<span id="cb19-4"><a aria-label="4"></a>                          cholera_cases<span class="sc">$</span>Count)</span>
-<span id="cb19-5"><a aria-label="5"></a></span>
-<span id="cb19-6"><a aria-label="6"></a>suspected_pump <span class="ot">&lt;-</span> pump_locations <span class="sc">|&gt;</span></span>
-<span id="cb19-7"><a aria-label="7"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-8"><a aria-label="8"></a>    <span class="at">distance_to_center =</span></span>
-<span id="cb19-9"><a aria-label="9"></a>      <span class="fu">sqrt</span>((Easting <span class="sc">-</span> center_e)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
-<span id="cb19-10"><a aria-label="10"></a>             (Northing <span class="sc">-</span> center_n)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb19-11"><a aria-label="11"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb19-12"><a aria-label="12"></a>  <span class="fu">slice_min</span>(distance_to_center, <span class="at">n =</span> <span class="dv">1</span>)</span>
-<span id="cb19-13"><a aria-label="13"></a></span>
-<span id="cb19-14"><a aria-label="14"></a>suspected_pump</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>center_e <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(cholera_cases<span class="sc">$</span>Easting,</span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>                          cholera_cases<span class="sc">$</span>Count)</span>
+<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>center_n <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(cholera_cases<span class="sc">$</span>Northing,</span>
+<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>                          cholera_cases<span class="sc">$</span>Count)</span>
+<span id="cb18-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a aria-hidden="true" tabindex="-1"></a>suspected_pump <span class="ot">&lt;-</span> pump_locations <span class="sc">|&gt;</span></span>
+<span id="cb18-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">distance_to_center =</span></span>
+<span id="cb18-9"><a aria-hidden="true" tabindex="-1"></a>      <span class="fu">sqrt</span>((Easting <span class="sc">-</span> center_e)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb18-10"><a aria-hidden="true" tabindex="-1"></a>             (Northing <span class="sc">-</span> center_n)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-11"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(distance_to_center, <span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb18-13"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a aria-hidden="true" tabindex="-1"></a>suspected_pump</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
      id Easting Northing distance_to_center
@@ -531,14 +459,14 @@
 <section id="距離変数を作る" class="slide level2">
 <h2>距離変数を作る</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-label="1"></a>cholera_cases2 <span class="ot">&lt;-</span> cholera_cases <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-3"><a aria-label="3"></a>    <span class="at">distance_to_pump =</span></span>
-<span id="cb21-4"><a aria-label="4"></a>      <span class="fu">sqrt</span>((Easting <span class="sc">-</span> suspected_pump<span class="sc">$</span>Easting)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
-<span id="cb21-5"><a aria-label="5"></a>             (Northing <span class="sc">-</span> suspected_pump<span class="sc">$</span>Northing)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb21-6"><a aria-label="6"></a>  )</span>
-<span id="cb21-7"><a aria-label="7"></a></span>
-<span id="cb21-8"><a aria-label="8"></a><span class="fu">head</span>(cholera_cases2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>cholera_cases2 <span class="ot">&lt;-</span> cholera_cases <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">distance_to_pump =</span></span>
+<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="fu">sqrt</span>((Easting <span class="sc">-</span> suspected_pump<span class="sc">$</span>Easting)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>             (Northing <span class="sc">-</span> suspected_pump<span class="sc">$</span>Northing)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cholera_cases2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
      id Count Angle Easting Northing distance_to_pump
@@ -556,48 +484,25 @@
 <section id="距離と死亡者数の関係を見る" class="slide level2">
 <h2>距離と死亡者数の関係を見る</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-label="1"></a><span class="fu">ggplot</span>(cholera_cases2,</span>
-<span id="cb23-2"><a aria-label="2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> distance_to_pump, <span class="at">y =</span> Count)) <span class="sc">+</span></span>
-<span id="cb23-3"><a aria-label="3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-4"><a aria-label="4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a aria-label="5"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cholera_cases2,</span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> distance_to_pump, <span class="at">y =</span> Count)) <span class="sc">+</span></span>
+<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<!--
-問い：
-
-> 井戸から遠くなるほど、死亡者数はどのように変化しているでしょうか。
--->
-<img data-src="lecture-ryukoku-slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
-<section id="回帰分析" class="slide level2">
-<h2>回帰分析</h2>
-<p>次のような回帰モデルを考えます。</p>
-<p><span class="math display">\[
-死亡者数_i
-=
-\alpha
-+
-\beta 井戸からの距離_i
-+
-u_i
-\]</span></p>
-<p>もし</p>
-<p><span class="math display">\[
-\beta &lt; 0
-\]</span></p>
-<p>であれば、</p>
+<img data-src="snowdata_cholera_demo_slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><p>問い：</p>
 <blockquote>
-<p><strong>井戸から遠い地点ほど、死亡者数が少ない</strong></p>
+<p>井戸から遠くなるほど、死亡者数はどのように変化しているでしょうか。</p>
 </blockquote>
-<p>という関係を表します。</p>
 </section>
 <section id="回帰分析を行う" class="slide level2">
 <h2>回帰分析を行う</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-label="1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Count <span class="sc">~</span> distance_to_pump,</span>
-<span id="cb24-2"><a aria-label="2"></a>            <span class="at">data =</span> cholera_cases2)</span>
-<span id="cb24-3"><a aria-label="3"></a></span>
-<span id="cb24-4"><a aria-label="4"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Count <span class="sc">~</span> distance_to_pump,</span>
+<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> cholera_cases2)</span>
+<span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -620,6 +525,16 @@ F-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662</code></pre>
 </div>
 </div>
 <p>ここでは、図で見えた関係を数値で確認します。</p>
+</section>
+<section id="係数を解釈する" class="slide level2">
+<h2>係数を解釈する</h2>
+<p>回帰式は次のように表せます。</p>
+<p>[ 死亡者数_i = + 井戸からの距離_i + u_i ]</p>
+<p>() が負であれば、</p>
+<blockquote>
+<p>井戸から遠い地点ほど、死亡者数が少ない</p>
+</blockquote>
+<p>という関係を表します。</p>
 </section>
 <section id="ここで考えるべきこと" class="slide level2">
 <h2>ここで考えるべきこと</h2>
@@ -743,7 +658,6 @@ F-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662</code></pre>
   <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -765,8 +679,7 @@ F-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662</code></pre>
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -937,7 +850,7 @@ F-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662</code></pre>
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
