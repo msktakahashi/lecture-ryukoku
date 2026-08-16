@@ -1,14 +1,31 @@
+
+/* 中央寄せ */
 .v-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 70vh;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
 }
 
-.small-text {
+/* フォント小さくする */
+.small-text08 {
   font-size: 0.80em;
 }
 
+.small-text07 {
+  font-size: 0.70em;
+}
+
+.small-text05 {
+  font-size: 0.50em;
+}
+
+/* 下線 */
 .underline {
   text-decoration: underline;
+}
+
+/* タイトルフォントの調整 */
+.reveal h2 {
+  font-size: 1.3em;
 }
