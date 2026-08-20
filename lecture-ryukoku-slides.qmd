@@ -59,21 +59,21 @@ execute:
 ::: {.column width="40%"}
 
 
-#### John Snow (1813-1858)
+#### John Snow(1813-1858)
 
 ![](images/John_Snow.jpg){width=70%}
 :::
 
 ::: {.column width="60%"}
 
-#### Snowが「**データ分析**」で気づいたこと：
+#### スノウが「**データ分析**」で気づいたこと：
 
 ::: {.small-text08}
-- 水道を供給する会社によってコレラによる死亡率が異なる
+- 水道を供給する会社によって住民のコレラによる死亡率が異なる
 - 多くの死者がある特定の井戸を利用
-- 井戸近くのビール工場の従業員には重症者なし（水の代わりにビール飲んでる）
+- その井戸近くの醸造所の従業員には重症者なし（従業員用の井戸、水の代わりにビール飲む）
 :::
--> [原因は水質にあるのでは？]{.underline}
+-> 原因は水質にあるのでは？
 
 :::
 
@@ -93,7 +93,7 @@ execute:
 
 #### "コレラマップ"
 
-![](images/epidemiology-snow1.jpg){width=100%}
+![](images/epidemiology-Snow1.jpg){width=100%}
 :::
 
 ::: {.column width="50%"}
@@ -102,7 +102,7 @@ execute:
 - ビール工場（緑）では重症者なし
 - **この井戸を利用停止にしたら死者数が減少**
 
-->水質が原因であると特定
+->水質が原因であると推論
 
 :::
 
@@ -132,6 +132,9 @@ execute:
 
 -> コレラによる死者の激減
 
+
+正しい原因を突き止めることで適切な対応策を立てることができた
+
 :::
 
 ::::
@@ -140,7 +143,7 @@ execute:
 
 ------------------------------------------------------------------------
 
-## 演習：John Snow の分析の再現
+## 演習：ジョン・スノウ の分析の再現
 
 ::: {.v-center}
 
@@ -159,6 +162,7 @@ execute:
 ```{r}
 # 初回のみ必要
 # install.packages("SnowData")
+# install.packages("tidyr")
 
 library(SnowData)
 library(ggplot2)
@@ -179,6 +183,7 @@ library(dplyr)
 
 ::: {.v-center}
 
+`data()`で以下の３つのデータを読み込む
 ```{r}
 data(cholera_cases)
 data(pump_locations)
@@ -273,6 +278,7 @@ streets <- streets |>
 
 ::: {.v-center}
 
+`head()`でデータの一部を確認
 ```{r}
 head(cholera_cases)
 ```
@@ -285,15 +291,15 @@ head(cholera_cases)
 
 ::: {.v-center}
 
-観測地点はいくつあるか？
+観測地点はいくつあるか？`nrow()`
 ```{r}
 nrow(cholera_cases)
 ```
-死亡者数の合計はいくつか？
+死亡者数の合計はいくつか？`sum()`
 ```{r}
 sum(cholera_cases$Count)
 ```
-1地点で複数人が死亡している場所はあるか？
+1地点で複数人が死亡している場所はあるか？`summary()`
 ```{r}
 summary(cholera_cases$Count)
 ```
@@ -416,109 +422,99 @@ ggplot() +
 
 ------------------------------------------------------------------------
 
-## 疑わしい井戸を選ぶ
+## それぞれの井戸周辺の死亡者数を計算
 
 ::: {.v-center}
 
-例）「死亡者数で重みづけした中心位置」に最も近い井戸を「疑わしい井戸」として選ぶ
-
-死亡者数で重みづけした中心位置：
 ```{r}
-center_e <- weighted.mean(cholera_cases$Easting,
-                          cholera_cases$Count)
-center_n <- weighted.mean(cholera_cases$Northing,
-                          cholera_cases$Count)
+# 「周辺」を100m以内と定義
+radius <- 100
 
-death_center <- data.frame(
-  Easting = center_e,
-  Northing = center_n
-)
-```
-
-:::
-
-------------------------------------------------------------------------
-
-## 疑わしい井戸を選ぶ
-
-::: {.v-center}
-
-中心位置を地図で確認：
-```{r}
-#| output-location: slide
-ggplot() +
-  geom_segment(
-    data = streets,
-    aes(
-      x = start_coord_east,
-      y = start_coord_north,
-      xend = end_coord_east,
-      yend = end_coord_north
+# 各井戸と各死亡地点の組み合わせを作る
+pump_case_distance <- tidyr::crossing(
+  pump_locations |>
+    transmute(
+      pump_id = id,
+      pump_e = Easting,
+      pump_n = Northing
     ),
-    linewidth = 0.3
-  ) +
-  geom_point(
-    data = cholera_cases,
-    aes(x = Easting, y = Northing, size = Count),
-    alpha = 0.6
-  ) +
-  geom_point(
-    data = death_center,
-    aes(x = Easting, y = Northing),
-    shape = 16,
-    size = 5,
-    color = "green"
-  ) +
-  geom_point(
-    data = pump_locations,
-    aes(x = Easting, y = Northing),
-    shape = 17,
-    size = 3,
-    color = "red"
-  ) +
-  geom_text(
-    data = pump_locations,
-    aes(x = Easting, y = Northing, label = id),
-    nudge_y = 15,
-    size = 3,
-    color = "red"
-  ) +
-  coord_fixed() +
-  theme_void()
-```
-
-:::
-
-------------------------------------------------------------------------
-
-## 疑わしい井戸を選ぶ
-
-::: {.v-center}
-
-「中心位置」に最も近い「疑わしい井戸」は？
-```{r}
-suspected_pump <- pump_locations |>
-  # それぞれの井戸と中心位置の距離を計算
+  cholera_cases |>
+    transmute(
+      case_id = id,
+      Count,
+      case_e = Easting,
+      case_n = Northing
+    )
+) |>
+  # 各井戸から各死亡地点までの距離を計算
   mutate(
-    distance_to_center =
-      sqrt((Easting - center_e)^2 +
-             (Northing - center_n)^2)
-  ) |>
-  # 最も距離が短い井戸を選ぶ
-  slice_min(distance_to_center, n = 1)
-
-suspected_pump
+    distance = sqrt(
+      (case_e - pump_e)^2 +
+      (case_n - pump_n)^2
+    )
+  )
 ```
 
 :::
 
 ------------------------------------------------------------------------
 
-## 距離変数を作る
+## それぞれの井戸周辺の死亡者数を計算
 
 ::: {.v-center}
 
-「疑わしい井戸」の位置を地図で確認：
+```{r}
+#| output-location: slide
+# 井戸ごとに100m以内の死亡者数を集計
+pump_deaths <- pump_case_distance |>
+  group_by(pump_id, pump_e, pump_n) |>
+  summarise(
+    deaths_nearby = sum(Count[distance <= radius]),
+    .groups = "drop"
+  ) |>
+  # 周辺死亡者数が多い順に並べる
+  arrange(desc(deaths_nearby))
+
+pump_deaths
+```
+
+:::
+
+------------------------------------------------------------------------
+
+## 疑わしい井戸を選ぶ
+
+::: {.v-center}
+
+周辺の死者数が最も多い二つの井戸を取り出す
+```{r}
+#| output-location: slide
+top2_pumps <- pump_deaths |>
+  slice_max(
+    deaths_nearby,
+    n = 2,
+    with_ties = FALSE
+  ) |>
+  arrange(desc(deaths_nearby)) |>
+  transmute(
+    id = pump_id,
+    Easting = pump_e,
+    Northing = pump_n,
+    deaths_nearby
+  )
+
+top2_pumps
+```
+
+:::
+
+------------------------------------------------------------------------
+
+## 疑わしい井戸を選ぶ
+
+::: {.v-center}
+
+地図で表すと・・・
 ```{r}
 #| output-location: slide
 ggplot() +
@@ -544,20 +540,24 @@ ggplot() +
     size = 3,
     color = "red"
   ) +
-  geom_text(
-    data = pump_locations,
-    aes(x = Easting, y = Northing, label = id),
-    nudge_y = 15,
-    size = 3
-  ) +
   geom_point(
-    data = suspected_pump,
+    data = top2_pumps,
     aes(x = Easting, y = Northing),
     shape = 21,
     size = 7,
     fill = "yellow",
-    color = "red",
-    stroke = 2
+    color = "black"
+  ) +
+  geom_text(
+    data = top2_pumps,
+    aes(
+      x = Easting,
+      y = Northing,
+      label = paste0("No.", id, "\n", deaths_nearby, " deaths")
+    ),
+    nudge_y = 35,
+    size = 3.5,
+    fontface = "bold"
   ) +
   coord_fixed() +
   theme_void()
@@ -571,14 +571,25 @@ ggplot() +
 
 ::: {.v-center}
 
-次は、「疑わしい井戸」と「死亡発生地点」の距離`distance_to_pump`を計算してみる
+各死亡発生地点からこれら２つの井戸への距離を計算
 ```{r}
 #| output-location: slide
+top2_pumps <- top2_pumps |>
+  arrange(desc(deaths_nearby))
+
+pump1 <- top2_pumps |> slice(1)
+pump2 <- top2_pumps |> slice(2)
+
 cholera_cases2 <- cholera_cases |>
   mutate(
-    distance_to_pump =
-      sqrt((Easting - suspected_pump$Easting)^2 +
-             (Northing - suspected_pump$Northing)^2)
+    distance_pump1 = sqrt(
+      (Easting - pump1$Easting)^2 +
+      (Northing - pump1$Northing)^2
+    ),
+    distance_pump2 = sqrt(
+      (Easting - pump2$Easting)^2 +
+      (Northing - pump2$Northing)^2
+    )
   )
 
 head(cholera_cases2)
@@ -588,24 +599,59 @@ head(cholera_cases2)
 
 ------------------------------------------------------------------------
 
-## 距離と死亡者数の関係を見る
+## 相対距離
 
 ::: {.v-center}
 
 ```{r}
+cholera_cases2 <- cholera_cases2 |>
+  mutate(
+    relative_distance =
+      distance_pump1 - distance_pump2
+  )
+
+summary(cholera_cases2$relative_distance)
+```
+
+`relative_distance`が小さいほど1位の井戸の方に相対的に近い。
+
+:::
+
+------------------------------------------------------------------------
+
+## 散布図
+
+::: {.v-center}
+```{r}
 #| output-location: slide
-ggplot(cholera_cases2,
-       aes(x = distance_to_pump, y = Count)) +
+ggplot(
+  cholera_cases2,
+  aes(x = relative_distance, y = Count)
+) +
   geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
   theme_minimal()
 ```
 
-<!--
-問い：
+:::
 
-> 井戸から遠くなるほど、死亡者数はどのように変化しているでしょうか。
--->
+------------------------------------------------------------------------
+
+## 回帰直線
+
+::: {.v-center}
+```{r}
+#| output-location: slide
+ggplot(
+  cholera_cases2,
+  aes(x = relative_distance, y = Count)
+) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    se = FALSE
+  ) +
+  theme_minimal()
+```
 
 :::
 
@@ -618,18 +664,18 @@ ggplot(cholera_cases2,
 次のような回帰モデルを考えます。
 
 $$
-Count_i
+DeathCount_i
 =
 \alpha
 +
-\beta Distance_i
+\beta RelativeDistance_i
 +
 u_i
 $$
 
-もし
+もし1位の井戸に（相対的）に近いほど死者数が多いのであれば、
 $$\beta < 0$$
-であれば、**疑わしい井戸から遠い地点ほど、死亡者数が少ない**という関係を表します。
+となるはず。
 
 :::
 
@@ -642,10 +688,12 @@ $$\beta < 0$$
 回帰分析で係数を推定してみる
 ```{r}
 #| output-location: slide
-model <- lm(Count ~ distance_to_pump,
-            data = cholera_cases2)
+model_linear <- lm(
+  Count ~ relative_distance,
+  data = cholera_cases2
+)
 
-summary(model)
+summary(model_linear)
 ```
 
 :::
@@ -656,15 +704,65 @@ summary(model)
 
 ::: {.v-center}
 
-では、この回帰結果から、
-
-> この井戸の水がコレラを引き起こした
-
-と結論づけられるでしょうか。
-
-答えは、そう簡単ではありません。
+- 係数はマイナスだが統計的に有意ではない
+- ジョン・スノウ の推論は間違っていた？
 
 :::
+
+------------------------------------------------------------------------
+
+## 回帰分析と本当に知りたいことの違い
+
+:::: {.v-center}
+
+:::{.small-text08}
+
+私たちの回帰モデルは、
+
+> 死亡が発生した地点の中で、1位の井戸に相対的に近い地点ほど死亡者数が多いか
+
+を調べている
+
+一方、本当に知りたいのは、
+
+> 1位の井戸の水を利用すると、コレラで死亡する確率が高くなるか
+
+スノウは地図だけを見ていたわけではなく、住民がどこの井戸を使っていたのかを調べた。
+
+:::
+
+::::
+
+------------------------------------------------------------------------
+
+## スノウは「例外」も調べた
+
+:::: {.v-center}
+
+::: {.small-text08}
+
+- 1位の井戸に近いにも関わらず死亡者が少ない場所があった
+
+> 醸造所（brewery）
+
+- 従業員は独自の井戸やビールを利用しており、原因となる井戸は（近くにあるが）利用していなかった
+
+- 実際にその井戸を使っているかどうかが重要
+
+:::
+
+::::
+
+------------------------------------------------------------------------
+
+## スノウは適切な比較対象を作っていた
+
+::: {.v-center}
+
+- 
+
+:::
+
 
 ------------------------------------------------------------------------
 
@@ -689,74 +787,12 @@ summary(model)
 
 ::: {.v-center}
 
-より厳密に考えるには、次のような情報が必要です。
+より厳密に検証するにはどのような情報が必要か？
 
 - 各地点に住んでいた人数
 - 死亡しなかった人の情報
 - 各世帯が実際に使っていた井戸
 - 所得や衛生環境
-- 直線距離ではなく、実際の移動距離
-
-:::
-
-------------------------------------------------------------------------
-
-## 因果関係を考える
-
-::: {.v-center}
-
-回帰分析の結果は、関係を数値で表すうえで有用です。
-
-しかし、
-
-> 関係があること
-
-と
-
-> 原因であること
-
-は同じではありません。
-
-この違いを意識することが、データ分析では重要です。
-
-:::
-
-------------------------------------------------------------------------
-
-## 学生に出す演習問題：基礎
-
-::: {.v-center}
-
-1. `cholera_cases` の観測地点数を確認しなさい。
-2. 死亡者数の合計を求めなさい。
-3. 死亡地点を散布図で表しなさい。
-4. 井戸の位置を地図に追加しなさい。
-
-:::
-
-------------------------------------------------------------------------
-
-## 学生に出す演習問題：応用
-
-::: {.v-center}
-
-1. 地図から、感染源として疑われる井戸を1つ選びなさい。
-2. その井戸から各死亡地点までの距離を計算しなさい。
-3. 距離と死亡者数の関係を散布図で確認しなさい。
-4. `lm()` を使って、距離と死亡者数の関係を推定しなさい。
-
-:::
-
-------------------------------------------------------------------------
-
-## 学生に出す演習問題：考察
-
-::: {.v-center}
-
-1. 回帰係数を自分の言葉で解釈しなさい。
-2. この分析から言えることと言えないことを整理しなさい。
-3. 因果関係を明らかにするには、どのような追加データが必要でしょうか。
-4. 今回の分析を、現代の感染症対策に応用するとしたら、どのようなデータが必要でしょうか。
 
 :::
 

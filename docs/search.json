@@ -18,42 +18,42 @@
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow (1813-1858)\n\n\nSnowが「データ分析」で気づいたこと：\n\n\n水道を供給する会社によってコレラによる死亡率が異なる\n多くの死者がある特定の井戸を利用\n井戸近くのビール工場の従業員には重症者なし（水の代わりにビール飲んでる）\n\n\n-&gt; 原因は水質にあるのでは？"
+    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow(1813-1858)\n\n\nスノウが「データ分析」で気づいたこと：\n\n\n水道を供給する会社によって住民のコレラによる死亡率が異なる\n多くの死者がある特定の井戸を利用\nその井戸近くの醸造所の従業員には重症者なし（従業員用の井戸、水の代わりにビール飲む）\n\n\n-&gt; 原因は水質にあるのでは？"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nある水道会社から水を引いていた井戸（赤）周辺の死者が多い\nビール工場（緑）では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt;水質が原因であると特定"
+    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nある水道会社から水を引いていた井戸（赤）周辺の死者が多い\nビール工場（緑）では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt;水質が原因であると推論"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n\n\n解決策\n\n上下水道の整備\n水は沸騰させてから飲む\n\n-&gt; コレラによる死者の激減"
+    "text": "偉大な先人から学ぶ\n\n\n\n\n\n解決策\n\n上下水道の整備\n水は沸騰させてから飲む\n\n-&gt; コレラによる死者の激減\n正しい原因を突き止めることで適切な対応策を立てることができた"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#演習john-snow-の分析の再現",
-    "href": "lecture-ryukoku-slides.html#演習john-snow-の分析の再現",
+    "objectID": "lecture-ryukoku-slides.html#演習ジョンスノウ-の分析の再現",
+    "href": "lecture-ryukoku-slides.html#演習ジョンスノウ-の分析の再現",
     "title": "データ分析と問題解決",
-    "section": "演習：John Snow の分析の再現",
-    "text": "演習：John Snow の分析の再現\n\n演習の目的など"
+    "section": "演習：ジョン・スノウ の分析の再現",
+    "text": "演習：ジョン・スノウ の分析の再現\n\n演習の目的など"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#使うデータ",
     "href": "lecture-ryukoku-slides.html#使うデータ",
     "title": "データ分析と問題解決",
     "section": "使うデータ",
-    "text": "使うデータ\n\n今回は SnowData パッケージを使います。\n\n# 初回のみ必要\n# install.packages(\"SnowData\")\n\nlibrary(SnowData)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nSnowData には、次のデータが含まれています。\n\ncholera_cases：コレラの死亡が発生した地点と死者数\npump_locations：井戸の位置\nstreets：道路の位置"
+    "text": "使うデータ\n\n今回は SnowData パッケージを使います。\n\n# 初回のみ必要\n# install.packages(\"SnowData\")\n# install.packages(\"tidyr\")\n\nlibrary(SnowData)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nSnowData には、次のデータが含まれています。\n\ncholera_cases：コレラの死亡が発生した地点と死者数\npump_locations：井戸の位置\nstreets：道路の位置"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#データを読み込む",
     "href": "lecture-ryukoku-slides.html#データを読み込む",
     "title": "データ分析と問題解決",
     "section": "データを読み込む",
-    "text": "データを読み込む\n\n\ndata(cholera_cases)\ndata(pump_locations)\ndata(streets)"
+    "text": "データを読み込む\n\ndata()で以下の３つのデータを読み込む\n\ndata(cholera_cases)\ndata(pump_locations)\ndata(streets)"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#データを読み込む-1",
@@ -74,14 +74,14 @@
     "href": "lecture-ryukoku-slides.html#死亡地点のデータを確認",
     "title": "データ分析と問題解決",
     "section": "死亡地点のデータを確認",
-    "text": "死亡地点のデータを確認\n\n\nhead(cholera_cases)\n\n# A tibble: 6 × 5\n     id Count Angle Easting Northing\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1     1     1   311 529161.  181015.\n2     2     1   311 529188.  180982.\n3     3     2   216 529190.  181046.\n4     4     2   216 529184.  181041.\n5     5     1   126 529211.  181038.\n6     6     1   126 529227.  181015."
+    "text": "死亡地点のデータを確認\n\nhead()でデータの一部を確認\n\nhead(cholera_cases)\n\n# A tibble: 6 × 5\n     id Count Angle Easting Northing\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1     1     1   311 529161.  181015.\n2     2     1   311 529188.  180982.\n3     3     2   216 529190.  181046.\n4     4     2   216 529184.  181041.\n5     5     1   126 529211.  181038.\n6     6     1   126 529227.  181015."
   },
   {
     "objectID": "lecture-ryukoku-slides.html#観測単位を確認する",
     "href": "lecture-ryukoku-slides.html#観測単位を確認する",
     "title": "データ分析と問題解決",
     "section": "観測単位を確認する",
-    "text": "観測単位を確認する\n\n観測地点はいくつあるか？\n\nnrow(cholera_cases)\n\n[1] 317\n\n\n死亡者数の合計はいくつか？\n\nsum(cholera_cases$Count)\n\n[1] 573\n\n\n1地点で複数人が死亡している場所はあるか？\n\nsummary(cholera_cases$Count)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.000   1.000   1.000   1.808   2.000  18.000"
+    "text": "観測単位を確認する\n\n観測地点はいくつあるか？nrow()\n\nnrow(cholera_cases)\n\n[1] 317\n\n\n死亡者数の合計はいくつか？sum()\n\nsum(cholera_cases$Count)\n\n[1] 573\n\n\n1地点で複数人が死亡している場所はあるか？summary()\n\nsummary(cholera_cases$Count)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.000   1.000   1.000   1.808   2.000  18.000"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#井戸のデータを確認する",
@@ -133,18 +133,46 @@
     "text": "井戸を追加する"
   },
   {
+    "objectID": "lecture-ryukoku-slides.html#それぞれの井戸周辺の死亡者数を計算",
+    "href": "lecture-ryukoku-slides.html#それぞれの井戸周辺の死亡者数を計算",
+    "title": "データ分析と問題解決",
+    "section": "それぞれの井戸周辺の死亡者数を計算",
+    "text": "それぞれの井戸周辺の死亡者数を計算\n\n\n# 「周辺」を100m以内と定義\nradius &lt;- 100\n\n# 各井戸と各死亡地点の組み合わせを作る\npump_case_distance &lt;- tidyr::crossing(\n  pump_locations |&gt;\n    transmute(\n      pump_id = id,\n      pump_e = Easting,\n      pump_n = Northing\n    ),\n  cholera_cases |&gt;\n    transmute(\n      case_id = id,\n      Count,\n      case_e = Easting,\n      case_n = Northing\n    )\n) |&gt;\n  # 各井戸から各死亡地点までの距離を計算\n  mutate(\n    distance = sqrt(\n      (case_e - pump_e)^2 +\n      (case_n - pump_n)^2\n    )\n  )"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#それぞれの井戸周辺の死亡者数を計算-1",
+    "href": "lecture-ryukoku-slides.html#それぞれの井戸周辺の死亡者数を計算-1",
+    "title": "データ分析と問題解決",
+    "section": "それぞれの井戸周辺の死亡者数を計算",
+    "text": "それぞれの井戸周辺の死亡者数を計算\n\n\n# 井戸ごとに100m以内の死亡者数を集計\npump_deaths &lt;- pump_case_distance |&gt;\n  group_by(pump_id, pump_e, pump_n) |&gt;\n  summarise(\n    deaths_nearby = sum(Count[distance &lt;= radius]),\n    .groups = \"drop\"\n  ) |&gt;\n  # 周辺死亡者数が多い順に並べる\n  arrange(desc(deaths_nearby))\n\npump_deaths"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#それぞれの井戸周辺の死亡者数を計算-1-output",
+    "href": "lecture-ryukoku-slides.html#それぞれの井戸周辺の死亡者数を計算-1-output",
+    "title": "データ分析と問題解決",
+    "section": "それぞれの井戸周辺の死亡者数を計算",
+    "text": "それぞれの井戸周辺の死亡者数を計算\n\n# A tibble: 13 × 4\n   pump_id  pump_e  pump_n deaths_nearby\n     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;\n 1       9 529396. 181026.           227\n 2       3 529191. 181078.            31\n 3      12 529610. 180896.            29\n 4      10 529452. 180825.            26\n 5       2 529296. 180796.             3\n 6       8 529524. 181354.             3\n 7       4 529181. 181193.             2\n 8       7 529441. 181330.             2\n 9       1 529209. 180668.             1\n10      11 529593. 180668.             1\n11       5 529180. 181354.             0\n12       6 529310. 181388.             0\n13      13 529746. 180923.             0"
+  },
+  {
     "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ",
     "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ",
     "title": "データ分析と問題解決",
     "section": "疑わしい井戸を選ぶ",
-    "text": "疑わしい井戸を選ぶ\n\n例）「死亡者数で重みづけした中心位置」に最も近い井戸を「疑わしい井戸」として選ぶ\n死亡者数で重みづけした中心位置：\n\ncenter_e &lt;- weighted.mean(cholera_cases$Easting,\n                          cholera_cases$Count)\ncenter_n &lt;- weighted.mean(cholera_cases$Northing,\n                          cholera_cases$Count)\n\ndeath_center &lt;- data.frame(\n  Easting = center_e,\n  Northing = center_n\n)"
+    "text": "疑わしい井戸を選ぶ\n\n周辺の死者数が最も多い二つの井戸を取り出す\n\ntop2_pumps &lt;- pump_deaths |&gt;\n  slice_max(\n    deaths_nearby,\n    n = 2,\n    with_ties = FALSE\n  ) |&gt;\n  arrange(desc(deaths_nearby)) |&gt;\n  transmute(\n    id = pump_id,\n    Easting = pump_e,\n    Northing = pump_n,\n    deaths_nearby\n  )\n\ntop2_pumps"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-output",
+    "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-output",
+    "title": "データ分析と問題解決",
+    "section": "疑わしい井戸を選ぶ",
+    "text": "疑わしい井戸を選ぶ\n\n# A tibble: 2 × 4\n     id Easting Northing deaths_nearby\n  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;\n1     9 529396.  181026.           227\n2     3 529191.  181078.            31"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-1",
     "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-1",
     "title": "データ分析と問題解決",
     "section": "疑わしい井戸を選ぶ",
-    "text": "疑わしい井戸を選ぶ\n\n中心位置を地図で確認：\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  geom_point(\n    data = death_center,\n    aes(x = Easting, y = Northing),\n    shape = 16,\n    size = 5,\n    color = \"green\"\n  ) +\n  geom_point(\n    data = pump_locations,\n    aes(x = Easting, y = Northing),\n    shape = 17,\n    size = 3,\n    color = \"red\"\n  ) +\n  geom_text(\n    data = pump_locations,\n    aes(x = Easting, y = Northing, label = id),\n    nudge_y = 15,\n    size = 3,\n    color = \"red\"\n  ) +\n  coord_fixed() +\n  theme_void()"
+    "text": "疑わしい井戸を選ぶ\n\n地図で表すと・・・\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  geom_point(\n    data = pump_locations,\n    aes(x = Easting, y = Northing),\n    shape = 17,\n    size = 3,\n    color = \"red\"\n  ) +\n  geom_point(\n    data = top2_pumps,\n    aes(x = Easting, y = Northing),\n    shape = 21,\n    size = 7,\n    fill = \"yellow\",\n    color = \"black\"\n  ) +\n  geom_text(\n    data = top2_pumps,\n    aes(\n      x = Easting,\n      y = Northing,\n      label = paste0(\"No.\", id, \"\\n\", deaths_nearby, \" deaths\")\n    ),\n    nudge_y = 35,\n    size = 3.5,\n    fontface = \"bold\"\n  ) +\n  coord_fixed() +\n  theme_void()"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-1-output",
@@ -154,81 +182,102 @@
     "text": "疑わしい井戸を選ぶ"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-2",
-    "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-2",
-    "title": "データ分析と問題解決",
-    "section": "疑わしい井戸を選ぶ",
-    "text": "疑わしい井戸を選ぶ\n\n「中心位置」に最も近い「疑わしい井戸」は？\n\nsuspected_pump &lt;- pump_locations |&gt;\n  # それぞれの井戸と中心位置の距離を計算\n  mutate(\n    distance_to_center =\n      sqrt((Easting - center_e)^2 +\n             (Northing - center_n)^2)\n  ) |&gt;\n  # 最も距離が短い井戸を選ぶ\n  slice_min(distance_to_center, n = 1)\n\nsuspected_pump\n\n# A tibble: 1 × 4\n     id Easting Northing distance_to_center\n  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;              &lt;dbl&gt;\n1     9 529396.  181026.               24.4"
-  },
-  {
     "objectID": "lecture-ryukoku-slides.html#距離変数を作る",
     "href": "lecture-ryukoku-slides.html#距離変数を作る",
     "title": "データ分析と問題解決",
     "section": "距離変数を作る",
-    "text": "距離変数を作る\n\n「疑わしい井戸」の位置を地図で確認：\n\nggplot() +\n  geom_segment(\n    data = streets,\n    aes(\n      x = start_coord_east,\n      y = start_coord_north,\n      xend = end_coord_east,\n      yend = end_coord_north\n    ),\n    linewidth = 0.3\n  ) +\n  geom_point(\n    data = cholera_cases,\n    aes(x = Easting, y = Northing, size = Count),\n    alpha = 0.6\n  ) +\n  geom_point(\n    data = pump_locations,\n    aes(x = Easting, y = Northing),\n    shape = 17,\n    size = 3,\n    color = \"red\"\n  ) +\n  geom_text(\n    data = pump_locations,\n    aes(x = Easting, y = Northing, label = id),\n    nudge_y = 15,\n    size = 3\n  ) +\n  geom_point(\n    data = suspected_pump,\n    aes(x = Easting, y = Northing),\n    shape = 21,\n    size = 7,\n    fill = \"yellow\",\n    color = \"red\",\n    stroke = 2\n  ) +\n  coord_fixed() +\n  theme_void()"
+    "text": "距離変数を作る\n\n各死亡発生地点からこれら２つの井戸への距離を計算\n\ntop2_pumps &lt;- top2_pumps |&gt;\n  arrange(desc(deaths_nearby))\n\npump1 &lt;- top2_pumps |&gt; slice(1)\npump2 &lt;- top2_pumps |&gt; slice(2)\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_pump1 = sqrt(\n      (Easting - pump1$Easting)^2 +\n      (Northing - pump1$Northing)^2\n    ),\n    distance_pump2 = sqrt(\n      (Easting - pump2$Easting)^2 +\n      (Northing - pump2$Northing)^2\n    )\n  )\n\nhead(cholera_cases2)"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#距離変数を作る-output",
     "href": "lecture-ryukoku-slides.html#距離変数を作る-output",
     "title": "データ分析と問題解決",
     "section": "距離変数を作る",
-    "text": "距離変数を作る"
+    "text": "距離変数を作る\n\n# A tibble: 6 × 7\n     id Count Angle Easting Northing distance_pump1 distance_pump2\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;\n1     1     1   311 529161.  181015.           235.           70.3\n2     2     1   311 529188.  180982.           212.           96.4\n3     3     2   216 529190.  181046.           206.           32.2\n4     4     2   216 529184.  181041.           212.           37.8\n5     5     1   126 529211.  181038.           185.           44.8\n6     6     1   126 529227.  181015.           169.           72.5"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#距離変数を作る-1",
-    "href": "lecture-ryukoku-slides.html#距離変数を作る-1",
+    "objectID": "lecture-ryukoku-slides.html#相対距離",
+    "href": "lecture-ryukoku-slides.html#相対距離",
     "title": "データ分析と問題解決",
-    "section": "距離変数を作る",
-    "text": "距離変数を作る\n\n次は、「疑わしい井戸」と「死亡発生地点」の距離distance_to_pumpを計算してみる\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_to_pump =\n      sqrt((Easting - suspected_pump$Easting)^2 +\n             (Northing - suspected_pump$Northing)^2)\n  )\n\nhead(cholera_cases2)"
+    "section": "相対距離",
+    "text": "相対距離\n\n\ncholera_cases2 &lt;- cholera_cases2 |&gt;\n  mutate(\n    relative_distance =\n      distance_pump1 - distance_pump2\n  )\n\nsummary(cholera_cases2$relative_distance)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n-211.03 -198.66 -170.32 -125.26  -81.44  179.16 \n\n\nrelative_distanceが小さいほど1位の井戸の方に相対的に近い。"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#距離変数を作る-1-output",
-    "href": "lecture-ryukoku-slides.html#距離変数を作る-1-output",
+    "objectID": "lecture-ryukoku-slides.html#散布図",
+    "href": "lecture-ryukoku-slides.html#散布図",
     "title": "データ分析と問題解決",
-    "section": "距離変数を作る",
-    "text": "距離変数を作る\n\n# A tibble: 6 × 6\n     id Count Angle Easting Northing distance_to_pump\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n1     1     1   311 529161.  181015.             235.\n2     2     1   311 529188.  180982.             212.\n3     3     2   216 529190.  181046.             206.\n4     4     2   216 529184.  181041.             212.\n5     5     1   126 529211.  181038.             185.\n6     6     1   126 529227.  181015.             169."
+    "section": "散布図",
+    "text": "散布図\n\n\nggplot(\n  cholera_cases2,\n  aes(x = relative_distance, y = Count)\n) +\n  geom_point() +\n  theme_minimal()"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#距離と死亡者数の関係を見る",
-    "href": "lecture-ryukoku-slides.html#距離と死亡者数の関係を見る",
+    "objectID": "lecture-ryukoku-slides.html#散布図-output",
+    "href": "lecture-ryukoku-slides.html#散布図-output",
     "title": "データ分析と問題解決",
-    "section": "距離と死亡者数の関係を見る",
-    "text": "距離と死亡者数の関係を見る\n\n\nggplot(cholera_cases2,\n       aes(x = distance_to_pump, y = Count)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  theme_minimal()"
+    "section": "散布図",
+    "text": "散布図"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#距離と死亡者数の関係を見る-output",
-    "href": "lecture-ryukoku-slides.html#距離と死亡者数の関係を見る-output",
+    "objectID": "lecture-ryukoku-slides.html#回帰直線",
+    "href": "lecture-ryukoku-slides.html#回帰直線",
     "title": "データ分析と問題解決",
-    "section": "距離と死亡者数の関係を見る",
-    "text": "距離と死亡者数の関係を見る"
+    "section": "回帰直線",
+    "text": "回帰直線\n\n\nggplot(\n  cholera_cases2,\n  aes(x = relative_distance, y = Count)\n) +\n  geom_point() +\n  geom_smooth(\n    method = \"lm\",\n    se = FALSE\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#回帰直線-output",
+    "href": "lecture-ryukoku-slides.html#回帰直線-output",
+    "title": "データ分析と問題解決",
+    "section": "回帰直線",
+    "text": "回帰直線"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#回帰モデル",
     "href": "lecture-ryukoku-slides.html#回帰モデル",
     "title": "データ分析と問題解決",
     "section": "回帰モデル",
-    "text": "回帰モデル\n\n次のような回帰モデルを考えます。\n\\[\nCount_i\n=\n\\alpha\n+\n\\beta Distance_i\n+\nu_i\n\\]\nもし \\[\\beta &lt; 0\\] であれば、疑わしい井戸から遠い地点ほど、死亡者数が少ないという関係を表します。"
+    "text": "回帰モデル\n\n次のような回帰モデルを考えます。\n\\[\nDeathCount_i\n=\n\\alpha\n+\n\\beta RelativeDistance_i\n+\nu_i\n\\]\nもし1位の井戸に（相対的）に近いほど死者数が多いのであれば、 \\[\\beta &lt; 0\\] となるはず。"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#回帰分析",
     "href": "lecture-ryukoku-slides.html#回帰分析",
     "title": "データ分析と問題解決",
     "section": "回帰分析",
-    "text": "回帰分析\n\n回帰分析で係数を推定してみる\n\nmodel &lt;- lm(Count ~ distance_to_pump,\n            data = cholera_cases2)\n\nsummary(model)"
+    "text": "回帰分析\n\n回帰分析で係数を推定してみる\n\nmodel_linear &lt;- lm(\n  Count ~ relative_distance,\n  data = cholera_cases2\n)\n\nsummary(model_linear)"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#回帰分析-output",
     "href": "lecture-ryukoku-slides.html#回帰分析-output",
     "title": "データ分析と問題解決",
     "section": "回帰分析",
-    "text": "回帰分析\n\n\nCall:\nlm(formula = Count ~ distance_to_pump, data = cholera_cases2)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-1.3683 -0.8224 -0.4621  0.2764 15.6830 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)       2.395371   0.189118  12.666  &lt; 2e-16 ***\ndistance_to_pump -0.004365   0.001253  -3.483 0.000566 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.519 on 315 degrees of freedom\nMultiple R-squared:  0.03708,   Adjusted R-squared:  0.03402 \nF-statistic: 12.13 on 1 and 315 DF,  p-value: 0.0005662"
+    "text": "回帰分析\n\n\nCall:\nlm(formula = Count ~ relative_distance, data = cholera_cases2)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-0.8843 -0.8555 -0.7025  0.2135 16.1410 \n\nCoefficients:\n                    Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)        1.6955733  0.1413466  11.996   &lt;2e-16 ***\nrelative_distance -0.0008942  0.0008904  -1.004    0.316    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.546 on 315 degrees of freedom\nMultiple R-squared:  0.003191,  Adjusted R-squared:  2.647e-05 \nF-statistic: 1.008 on 1 and 315 DF,  p-value: 0.3161"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#ここで考えるべきこと",
     "href": "lecture-ryukoku-slides.html#ここで考えるべきこと",
     "title": "データ分析と問題解決",
     "section": "ここで考えるべきこと",
-    "text": "ここで考えるべきこと\n\nでは、この回帰結果から、\n\nこの井戸の水がコレラを引き起こした\n\nと結論づけられるでしょうか。\n答えは、そう簡単ではありません。"
+    "text": "ここで考えるべきこと\n\n\n係数はマイナスだが統計的に有意ではない\nジョン・スノウ の推論は間違っていた？"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#回帰分析と本当に知りたいことの違い",
+    "href": "lecture-ryukoku-slides.html#回帰分析と本当に知りたいことの違い",
+    "title": "データ分析と問題解決",
+    "section": "回帰分析と本当に知りたいことの違い",
+    "text": "回帰分析と本当に知りたいことの違い\n\n\n私たちの回帰モデルは、\n\n死亡が発生した地点の中で、1位の井戸に相対的に近い地点ほど死亡者数が多いか\n\nを調べている\n一方、本当に知りたいのは、\n\n1位の井戸の水を利用すると、コレラで死亡する確率が高くなるか\n\nスノウは地図だけを見ていたわけではなく、住民がどこの井戸を使っていたのかを調べた。"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#スノウは例外も調べた",
+    "href": "lecture-ryukoku-slides.html#スノウは例外も調べた",
+    "title": "データ分析と問題解決",
+    "section": "スノウは「例外」も調べた",
+    "text": "スノウは「例外」も調べた\n\n\n\n1位の井戸に近いにも関わらず死亡者が少ない場所があった\n\n\n醸造所（brewery）\n\n\n従業員は独自の井戸やビールを利用しており、原因となる井戸は（近くにあるが）利用していなかった\n実際にその井戸を使っているかどうかが重要"
+  },
+  {
+    "objectID": "lecture-ryukoku-slides.html#スノウは適切な比較対象を作っていた",
+    "href": "lecture-ryukoku-slides.html#スノウは適切な比較対象を作っていた",
+    "title": "データ分析と問題解決",
+    "section": "スノウは適切な比較対象を作っていた",
+    "text": "スノウは適切な比較対象を作っていた"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#この分析の限界",
@@ -242,35 +291,7 @@
     "href": "lecture-ryukoku-slides.html#さらに必要なデータ",
     "title": "データ分析と問題解決",
     "section": "さらに必要なデータ",
-    "text": "さらに必要なデータ\n\nより厳密に考えるには、次のような情報が必要です。\n\n各地点に住んでいた人数\n死亡しなかった人の情報\n各世帯が実際に使っていた井戸\n所得や衛生環境\n直線距離ではなく、実際の移動距離"
-  },
-  {
-    "objectID": "lecture-ryukoku-slides.html#因果関係を考える",
-    "href": "lecture-ryukoku-slides.html#因果関係を考える",
-    "title": "データ分析と問題解決",
-    "section": "因果関係を考える",
-    "text": "因果関係を考える\n\n回帰分析の結果は、関係を数値で表すうえで有用です。\nしかし、\n\n関係があること\n\nと\n\n原因であること\n\nは同じではありません。\nこの違いを意識することが、データ分析では重要です。"
-  },
-  {
-    "objectID": "lecture-ryukoku-slides.html#学生に出す演習問題基礎",
-    "href": "lecture-ryukoku-slides.html#学生に出す演習問題基礎",
-    "title": "データ分析と問題解決",
-    "section": "学生に出す演習問題：基礎",
-    "text": "学生に出す演習問題：基礎\n\n\ncholera_cases の観測地点数を確認しなさい。\n死亡者数の合計を求めなさい。\n死亡地点を散布図で表しなさい。\n井戸の位置を地図に追加しなさい。"
-  },
-  {
-    "objectID": "lecture-ryukoku-slides.html#学生に出す演習問題応用",
-    "href": "lecture-ryukoku-slides.html#学生に出す演習問題応用",
-    "title": "データ分析と問題解決",
-    "section": "学生に出す演習問題：応用",
-    "text": "学生に出す演習問題：応用\n\n\n地図から、感染源として疑われる井戸を1つ選びなさい。\nその井戸から各死亡地点までの距離を計算しなさい。\n距離と死亡者数の関係を散布図で確認しなさい。\nlm() を使って、距離と死亡者数の関係を推定しなさい。"
-  },
-  {
-    "objectID": "lecture-ryukoku-slides.html#学生に出す演習問題考察",
-    "href": "lecture-ryukoku-slides.html#学生に出す演習問題考察",
-    "title": "データ分析と問題解決",
-    "section": "学生に出す演習問題：考察",
-    "text": "学生に出す演習問題：考察\n\n\n回帰係数を自分の言葉で解釈しなさい。\nこの分析から言えることと言えないことを整理しなさい。\n因果関係を明らかにするには、どのような追加データが必要でしょうか。\n今回の分析を、現代の感染症対策に応用するとしたら、どのようなデータが必要でしょうか。"
+    "text": "さらに必要なデータ\n\nより厳密に検証するにはどのような情報が必要か？\n\n各地点に住んでいた人数\n死亡しなかった人の情報\n各世帯が実際に使っていた井戸\n所得や衛生環境"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#この演習で身につける力",
