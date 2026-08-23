@@ -105,7 +105,7 @@ execute:
 
 #### "コレラマップ"
 
-![](images/epidemiology-Snow1.jpg){width=100%}
+![](images/epidemiology-snow1.jpg){width=100%}
 :::
 
 ::: {.column width="50%"}
