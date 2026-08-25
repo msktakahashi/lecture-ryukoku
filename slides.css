@@ -29,3 +29,11 @@
 .reveal h2 {
   font-size: 1.3em;
 }
+
+/* PDF出力時は縦中央揃えを解除 */
+.print-pdf .v-center {
+  position: static !important;
+  top: auto !important;
+  transform: none !important;
+  width: 100% !important;
+}
