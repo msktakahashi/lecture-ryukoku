@@ -18,7 +18,7 @@
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow (1813-1858)\n\n\nデータの収集・分析でスノウがで気づいたこと：\n\n\n水道を供給する会社によって住民のコレラによる死亡率が異なる\n死亡者の多くが、ある特定の井戸を利用していた\nその井戸の近くの醸造所の従業員には重症者なし（独自の井戸を利用／水の代わりにビールを飲む）\n\n\n-&gt; 原因は水質にあるのでは？"
+    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow (1813-1858)\n\n\nデータの収集・分析でスノウが気づいたこと：\n\n\n水道を供給する会社によって住民のコレラによる死亡率が異なる\n死亡者の多くが、ある特定の井戸を利用していた\nその井戸の近くの醸造所の従業員には重症者なし（独自の井戸を利用／水の代わりにビールを飲む）\n\n\n-&gt; 原因は水質にあるのでは？"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
@@ -144,7 +144,7 @@
     "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ",
     "title": "データ分析と問題解決",
     "section": "疑わしい井戸を選ぶ",
-    "text": "疑わしい井戸を選ぶ\n\n周辺の死者数が多い上位2つの井戸を取り出す\n\n## 周辺の死者数が最も多い二つの井戸を取り出す ##\ntop2_pumps &lt;- pump_deaths |&gt;\n  slice_max(\n    deaths_nearby,\n    n = 2,\n    with_ties = FALSE\n  ) |&gt;\n  arrange(desc(deaths_nearby)) |&gt;\n  transmute(\n    id = pump_id,\n    Easting = pump_e,\n    Northing = pump_n,\n    deaths_nearby\n  )"
+    "text": "疑わしい井戸を選ぶ\n\n周辺の死者数が多い上位2つの井戸を取り出す\n\n## 周辺の死者数が最も多い2つの井戸を取り出す ##\ntop2_pumps &lt;- pump_deaths |&gt;\n  slice_max(\n    deaths_nearby,\n    n = 2,\n    with_ties = FALSE\n  ) |&gt;\n  arrange(desc(deaths_nearby)) |&gt;\n  transmute(\n    id = pump_id,\n    Easting = pump_e,\n    Northing = pump_n,\n    deaths_nearby\n  )"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-1",
@@ -165,7 +165,7 @@
     "href": "lecture-ryukoku-slides.html#距離変数を作る",
     "title": "データ分析と問題解決",
     "section": "距離変数を作る",
-    "text": "距離変数を作る\n\n死亡発生地点からこれら２つの井戸への距離を計算\n\n## 死亡発生地点から２つの井戸への距離を計算 ##\ntop2_pumps &lt;- top2_pumps |&gt;\n  arrange(desc(deaths_nearby))\n\npump1 &lt;- top2_pumps |&gt; slice(1)\npump2 &lt;- top2_pumps |&gt; slice(2)\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_pump1 = sqrt(\n      (Easting - pump1$Easting)^2 +\n      (Northing - pump1$Northing)^2\n    ),\n    distance_pump2 = sqrt(\n      (Easting - pump2$Easting)^2 +\n      (Northing - pump2$Northing)^2\n    )\n  )\n\nhead(cholera_cases2)"
+    "text": "距離変数を作る\n\n各死亡地点から2つの井戸への距離を計算\n\n## 各死亡地点から2つの井戸への距離を計算 ##\ntop2_pumps &lt;- top2_pumps |&gt;\n  arrange(desc(deaths_nearby))\n\npump1 &lt;- top2_pumps |&gt; slice(1)\npump2 &lt;- top2_pumps |&gt; slice(2)\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_pump1 = sqrt(\n      (Easting - pump1$Easting)^2 +\n      (Northing - pump1$Northing)^2\n    ),\n    distance_pump2 = sqrt(\n      (Easting - pump2$Easting)^2 +\n      (Northing - pump2$Northing)^2\n    )\n  )\n\nhead(cholera_cases2)"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#距離変数を作る-output",
@@ -249,7 +249,7 @@
     "href": "lecture-ryukoku-slides.html#スノウは例外も調べた",
     "title": "データ分析と問題解決",
     "section": "スノウは「例外」も調べた",
-    "text": "スノウは「例外」も調べた\n\n\n\n1位の井戸に近いにも関わらず死亡者が少ない場所があった\n\n\n醸造所（brewery）\n\n\n従業員は独自の井戸やビールを利用しており、原因となる井戸は（近くにあるが）利用していなかった\n実際にその井戸を使っているかどうかが重要"
+    "text": "スノウは「例外」も調べた\n\n\n\n1位の井戸に近いにもかかわらず死亡者が少ない場所があった\n\n\n醸造所（brewery）\n\n\n従業員は独自の井戸やビールを利用しており、原因となる井戸は（近くにあるが）利用していなかった\n実際にその井戸を使っているかどうかが重要"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#交絡因子",

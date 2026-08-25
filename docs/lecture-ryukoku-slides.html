@@ -264,7 +264,7 @@
 <h4 id="john-snow-1813-1858">John Snow (1813-1858)</h4>
 <p><img data-src="images/John_Snow.jpg" style="width:70.0%"></p>
 </div><div class="column" style="width:60%;">
-<h4 id="データの収集分析でスノウがで気づいたこと">データの収集・分析でスノウがで気づいたこと：</h4>
+<h4 id="データの収集分析でスノウが気づいたこと">データの収集・分析でスノウが気づいたこと：</h4>
 <div class="small-text08">
 <ul>
 <li>水道を供給する会社によって住民のコレラによる死亡率が異なる</li>
@@ -641,7 +641,7 @@
 <div class="v-center">
 <p>周辺の死者数が多い上位2つの井戸を取り出す</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="do">## 周辺の死者数が最も多い二つの井戸を取り出す ##</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="do">## 周辺の死者数が最も多い2つの井戸を取り出す ##</span></span>
 <span id="cb18-2"><a aria-label="2"></a>top2_pumps <span class="ot">&lt;-</span> pump_deaths <span class="sc">|&gt;</span></span>
 <span id="cb18-3"><a aria-label="3"></a>  <span class="fu">slice_max</span>(</span>
 <span id="cb18-4"><a aria-label="4"></a>    deaths_nearby,</span>
@@ -723,9 +723,9 @@
 </div></section><section id="距離変数を作る" class="slide level2">
 <h2>距離変数を作る</h2>
 <div class="v-center">
-<p>死亡発生地点からこれら２つの井戸への距離を計算</p>
+<p>各死亡地点から2つの井戸への距離を計算</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="do">## 死亡発生地点から２つの井戸への距離を計算 ##</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="do">## 各死亡地点から2つの井戸への距離を計算 ##</span></span>
 <span id="cb20-2"><a aria-label="2"></a>top2_pumps <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span></span>
 <span id="cb20-3"><a aria-label="3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(deaths_nearby))</span>
 <span id="cb20-4"><a aria-label="4"></a></span>
@@ -916,7 +916,7 @@ F-statistic: 1.008 on 1 and 315 DF,  p-value: 0.3161</code></pre>
 <div class="v-center">
 <div class="small-text08">
 <ul>
-<li>1位の井戸に近いにも関わらず死亡者が少ない場所があった</li>
+<li>1位の井戸に近いにもかかわらず死亡者が少ない場所があった</li>
 </ul>
 <blockquote>
 <p>醸造所（brewery）</p>
