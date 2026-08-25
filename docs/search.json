@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "lecture-ryukoku-slides.html#授業の目標",
-    "href": "lecture-ryukoku-slides.html#授業の目標",
+    "objectID": "lecture-ryukoku-slides.html#データ分析と問題解決の目標",
+    "href": "lecture-ryukoku-slides.html#データ分析と問題解決の目標",
     "title": "データ分析と問題解決",
-    "section": "授業の目標",
-    "text": "授業の目標\n\n\n演習の目標：\n\n解決したい問題を見つける\n「データ分析」を通して問題の原因を探る\n解決策を見出す\n\nこの模擬授業では、\n\n19世紀のロンドンにおけるコレラ流行の原因究明と解決を題材に、\n当時のデータを使いながら実際にRを使って演習を行います"
+    "section": "「データ分析と問題解決」の目標",
+    "text": "「データ分析と問題解決」の目標\n\n\n演習の目標：\n\n解決したい問題を見つける\n問題の原因は何か仮説を立てる\n「データ分析」を通して問題の原因を探る\n解決策を見出す\n\nこの模擬授業では、\n\n19世紀のロンドンにおけるコレラ流行の原因究明と解決を題材に、\n当時のデータを使いながら実際にRを使って演習を行います"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ",
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（社会問題）\nコレラが流行する原因は何か？\n\n瘴気（悪い空気）？（当時は「瘴気説」が主流）\n水質汚染？\n\n原因に応じて解決策を見出す\n\n大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）\n水質汚染が原因 -&gt; 水質改善？"
+    "text": "偉大な先人から学ぶ\n\n\n\n19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（社会問題）\nコレラが流行する原因は何か？\n\n瘴気（悪い空気）？（当時は「瘴気説」が主流）\n水質汚染？\n\n原因に応じて解決策を見出す\n\n瘴気が原因 -&gt; 街の悪臭を消す対策（実際に行われた）\n水質汚染が原因 -&gt; 水質改善、安全な飲料水の確保"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
@@ -25,7 +25,7 @@
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nBroad Streetの井戸（赤）周辺の死者が多い\nビール工場（緑）では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt; 水が原因であるという仮説をさらに支持"
+    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nBroad Streetの井戸（赤）周辺の死者が多い\n醸造所（緑）周辺では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt; 水が原因であるという仮説をさらに支持"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
@@ -165,7 +165,7 @@
     "href": "lecture-ryukoku-slides.html#距離変数を作る",
     "title": "データ分析と問題解決",
     "section": "距離変数を作る",
-    "text": "距離変数を作る\n\n各死亡発生地点からこれら２つの井戸への距離を計算\n\ntop2_pumps &lt;- top2_pumps |&gt;\n  arrange(desc(deaths_nearby))\n\npump1 &lt;- top2_pumps |&gt; slice(1)\npump2 &lt;- top2_pumps |&gt; slice(2)\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_pump1 = sqrt(\n      (Easting - pump1$Easting)^2 +\n      (Northing - pump1$Northing)^2\n    ),\n    distance_pump2 = sqrt(\n      (Easting - pump2$Easting)^2 +\n      (Northing - pump2$Northing)^2\n    )\n  )\n\nhead(cholera_cases2)"
+    "text": "距離変数を作る\n\n死亡発生地点からこれら２つの井戸への距離を計算\n\n## 死亡発生地点から２つの井戸への距離を計算 ##\ntop2_pumps &lt;- top2_pumps |&gt;\n  arrange(desc(deaths_nearby))\n\npump1 &lt;- top2_pumps |&gt; slice(1)\npump2 &lt;- top2_pumps |&gt; slice(2)\n\ncholera_cases2 &lt;- cholera_cases |&gt;\n  mutate(\n    distance_pump1 = sqrt(\n      (Easting - pump1$Easting)^2 +\n      (Northing - pump1$Northing)^2\n    ),\n    distance_pump2 = sqrt(\n      (Easting - pump2$Easting)^2 +\n      (Northing - pump2$Northing)^2\n    )\n  )\n\nhead(cholera_cases2)"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#距離変数を作る-output",
@@ -179,7 +179,7 @@
     "href": "lecture-ryukoku-slides.html#相対距離を計算",
     "title": "データ分析と問題解決",
     "section": "相対距離を計算",
-    "text": "相対距離を計算\n\n「1位の井戸への距離 ー 2位の井戸への距離」を相対距離とする\n\ncholera_cases2 &lt;- cholera_cases2 |&gt;\n  mutate(\n    relative_distance =\n      distance_pump1 - distance_pump2\n  )\n\nsummary(cholera_cases2$relative_distance)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n-211.03 -198.66 -170.32 -125.26  -81.44  179.16 \n\n\nrelative_distanceが小さいほど1位の井戸の方に相対的に近い。"
+    "text": "相対距離を計算\n\n「1位の井戸への距離 ー 2位の井戸への距離」を相対距離とする\n\n## 相対距離を計算 ##\ncholera_cases2 &lt;- cholera_cases2 |&gt;\n  mutate(\n    relative_distance =\n      distance_pump1 - distance_pump2\n  )\n\nsummary(cholera_cases2$relative_distance)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n-211.03 -198.66 -170.32 -125.26  -81.44  179.16 \n\n\nrelative_distanceが小さいほど1位の井戸の方に相対的に近い。"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#死者数と相対距離の散布図を作成",
@@ -242,7 +242,7 @@
     "href": "lecture-ryukoku-slides.html#回帰分析と本当に知りたいことの違い",
     "title": "データ分析と問題解決",
     "section": "回帰分析と本当に知りたいことの違い",
-    "text": "回帰分析と本当に知りたいことの違い\n\n\n私たちの回帰モデルは、\n\n死亡が発生した地点の中で、1位の井戸に相対的に近い地点ほど死亡者数が多いか\n\nを調べている\n一方、本当に知りたいのは、\n\n1位の井戸の水を利用すると、コレラで死亡する確率が高くなるか\n\nスノウは地図だけを見ていたわけではなく、住民がどこの井戸を使っていたのかを調べた。"
+    "text": "回帰分析と本当に知りたいことの違い\n\n\n私たちの回帰モデルは、\n\n死亡が発生した地点の中で、1位の井戸に相対的に近い地点ほど死亡者数が多いか\n\nを調べている\n一方、本当に知りたいのは、\n\n1位の井戸の水を利用すると、コレラで死亡する確率が高くなるか\n\nスノウは井戸への距離を見ていたわけではなく、住民がどこの井戸を使っていたのかを調べた。"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#スノウは例外も調べた",
@@ -270,7 +270,7 @@
     "href": "lecture-ryukoku-slides.html#まとめ",
     "title": "データ分析と問題解決",
     "section": "まとめ",
-    "text": "まとめ\n\nこの授業では、具体例を使いながら\n\n仮説を立てる\nデータを見る\n可視化する\n分析する\n限界を考える\n\nについて、授業全体を通じて演習していきます。"
+    "text": "まとめ\n\nこの授業では、具体例を使いながら\n\n仮説を立てる\nデータを見る\n可視化する\n分析する（その限界を考える）\n解決策を見出す\n\nについて、授業全体を通じて演習していきます。"
   },
   {
     "objectID": "snow_cholera_demo_slides.html#今日の位置づけ",

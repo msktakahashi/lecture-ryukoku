@@ -203,24 +203,28 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">データ分析と問題解決</h1>
-  <p class="subtitle">模擬授業（龍谷大学）</p>
+  <p class="subtitle">模擬授業@龍谷大学</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
 髙橋 雅生
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            上智大学経済学部
+          </p>
+    </div>
 </div>
 
 </section>
-<section id="授業の目標" class="slide level2">
-<h2>授業の目標</h2>
+<section id="データ分析と問題解決の目標" class="slide level2">
+<h2>「データ分析と問題解決」の目標</h2>
 <div class="v-center">
 <div class="small-text08">
 <p>演習の目標：</p>
 <ul>
 <li><p>解決したい問題を見つける</p></li>
+<li><p>問題の原因は何か仮説を立てる</p></li>
 <li><p>「データ分析」を通して問題の原因を探る</p></li>
 <li><p>解決策を見出す</p></li>
 </ul>
@@ -245,8 +249,8 @@
 </ul></li>
 <li><p>原因に応じて<strong>解決策</strong>を見出す</p>
 <ul>
-<li>大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）</li>
-<li>水質汚染が原因 -&gt; 水質改善？</li>
+<li>瘴気が原因 -&gt; 街の悪臭を消す対策（実際に行われた）</li>
+<li>水質汚染が原因 -&gt; 水質改善、安全な飲料水の確保</li>
 </ul></li>
 </ul>
 </div>
@@ -282,7 +286,7 @@
 </div><div class="column" style="width:50%;">
 <ul>
 <li>Broad Streetの井戸（赤）周辺の死者が多い</li>
-<li>ビール工場（緑）では重症者なし</li>
+<li>醸造所（緑）周辺では重症者なし</li>
 <li><strong>この井戸を利用停止にしたら死者数が減少</strong></li>
 </ul>
 <p>-&gt; 水が原因であるという仮説をさらに支持</p>
@@ -719,27 +723,28 @@
 </div></section><section id="距離変数を作る" class="slide level2">
 <h2>距離変数を作る</h2>
 <div class="v-center">
-<p>各死亡発生地点からこれら２つの井戸への距離を計算</p>
+<p>死亡発生地点からこれら２つの井戸への距離を計算</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a>top2_pumps <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a aria-label="2"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(deaths_nearby))</span>
-<span id="cb20-3"><a aria-label="3"></a></span>
-<span id="cb20-4"><a aria-label="4"></a>pump1 <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
-<span id="cb20-5"><a aria-label="5"></a>pump2 <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">2</span>)</span>
-<span id="cb20-6"><a aria-label="6"></a></span>
-<span id="cb20-7"><a aria-label="7"></a>cholera_cases2 <span class="ot">&lt;-</span> cholera_cases <span class="sc">|&gt;</span></span>
-<span id="cb20-8"><a aria-label="8"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-9"><a aria-label="9"></a>    <span class="at">distance_pump1 =</span> <span class="fu">sqrt</span>(</span>
-<span id="cb20-10"><a aria-label="10"></a>      (Easting <span class="sc">-</span> pump1<span class="sc">$</span>Easting)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
-<span id="cb20-11"><a aria-label="11"></a>      (Northing <span class="sc">-</span> pump1<span class="sc">$</span>Northing)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-12"><a aria-label="12"></a>    ),</span>
-<span id="cb20-13"><a aria-label="13"></a>    <span class="at">distance_pump2 =</span> <span class="fu">sqrt</span>(</span>
-<span id="cb20-14"><a aria-label="14"></a>      (Easting <span class="sc">-</span> pump2<span class="sc">$</span>Easting)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
-<span id="cb20-15"><a aria-label="15"></a>      (Northing <span class="sc">-</span> pump2<span class="sc">$</span>Northing)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-16"><a aria-label="16"></a>    )</span>
-<span id="cb20-17"><a aria-label="17"></a>  )</span>
-<span id="cb20-18"><a aria-label="18"></a></span>
-<span id="cb20-19"><a aria-label="19"></a><span class="fu">head</span>(cholera_cases2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="do">## 死亡発生地点から２つの井戸への距離を計算 ##</span></span>
+<span id="cb20-2"><a aria-label="2"></a>top2_pumps <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a aria-label="3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(deaths_nearby))</span>
+<span id="cb20-4"><a aria-label="4"></a></span>
+<span id="cb20-5"><a aria-label="5"></a>pump1 <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb20-6"><a aria-label="6"></a>pump2 <span class="ot">&lt;-</span> top2_pumps <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">2</span>)</span>
+<span id="cb20-7"><a aria-label="7"></a></span>
+<span id="cb20-8"><a aria-label="8"></a>cholera_cases2 <span class="ot">&lt;-</span> cholera_cases <span class="sc">|&gt;</span></span>
+<span id="cb20-9"><a aria-label="9"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-10"><a aria-label="10"></a>    <span class="at">distance_pump1 =</span> <span class="fu">sqrt</span>(</span>
+<span id="cb20-11"><a aria-label="11"></a>      (Easting <span class="sc">-</span> pump1<span class="sc">$</span>Easting)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb20-12"><a aria-label="12"></a>      (Northing <span class="sc">-</span> pump1<span class="sc">$</span>Northing)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-13"><a aria-label="13"></a>    ),</span>
+<span id="cb20-14"><a aria-label="14"></a>    <span class="at">distance_pump2 =</span> <span class="fu">sqrt</span>(</span>
+<span id="cb20-15"><a aria-label="15"></a>      (Easting <span class="sc">-</span> pump2<span class="sc">$</span>Easting)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb20-16"><a aria-label="16"></a>      (Northing <span class="sc">-</span> pump2<span class="sc">$</span>Northing)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-17"><a aria-label="17"></a>    )</span>
+<span id="cb20-18"><a aria-label="18"></a>  )</span>
+<span id="cb20-19"><a aria-label="19"></a></span>
+<span id="cb20-20"><a aria-label="20"></a><span class="fu">head</span>(cholera_cases2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 </div>
@@ -761,13 +766,14 @@
 <div class="v-center">
 <p>「1位の井戸への距離 ー 2位の井戸への距離」を相対距離とする</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a>cholera_cases2 <span class="ot">&lt;-</span> cholera_cases2 <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-3"><a aria-label="3"></a>    <span class="at">relative_distance =</span></span>
-<span id="cb22-4"><a aria-label="4"></a>      distance_pump1 <span class="sc">-</span> distance_pump2</span>
-<span id="cb22-5"><a aria-label="5"></a>  )</span>
-<span id="cb22-6"><a aria-label="6"></a></span>
-<span id="cb22-7"><a aria-label="7"></a><span class="fu">summary</span>(cholera_cases2<span class="sc">$</span>relative_distance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a><span class="do">## 相対距離を計算 ##</span></span>
+<span id="cb22-2"><a aria-label="2"></a>cholera_cases2 <span class="ot">&lt;-</span> cholera_cases2 <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-4"><a aria-label="4"></a>    <span class="at">relative_distance =</span></span>
+<span id="cb22-5"><a aria-label="5"></a>      distance_pump1 <span class="sc">-</span> distance_pump2</span>
+<span id="cb22-6"><a aria-label="6"></a>  )</span>
+<span id="cb22-7"><a aria-label="7"></a></span>
+<span id="cb22-8"><a aria-label="8"></a><span class="fu">summary</span>(cholera_cases2<span class="sc">$</span>relative_distance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 -211.03 -198.66 -170.32 -125.26  -81.44  179.16 </code></pre>
@@ -901,7 +907,7 @@ F-statistic: 1.008 on 1 and 315 DF,  p-value: 0.3161</code></pre>
 <blockquote>
 <p>1位の井戸の水を利用すると、コレラで死亡する確率が高くなるか</p>
 </blockquote>
-<p>スノウは地図だけを見ていたわけではなく、住民がどこの井戸を使っていたのかを調べた。</p>
+<p>スノウは井戸への距離を見ていたわけではなく、住民がどこの井戸を使っていたのかを調べた。</p>
 </div>
 </div>
 </section>
@@ -953,8 +959,8 @@ F-statistic: 1.008 on 1 and 315 DF,  p-value: 0.3161</code></pre>
 <li>仮説を立てる</li>
 <li>データを見る</li>
 <li>可視化する</li>
-<li>分析する</li>
-<li>限界を考える</li>
+<li>分析する（その限界を考える）</li>
+<li>解決策を見出す</li>
 </ul>
 <p>について、授業全体を通じて演習していきます。</p>
 </div>
