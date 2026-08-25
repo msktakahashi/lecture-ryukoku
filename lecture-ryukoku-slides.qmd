@@ -10,7 +10,6 @@ format:
   revealjs:
     theme: simple
     slide-number: true
-    pdf-max-pages-per-slide: 1
     chalkboard: true
     css: slides.css
 
