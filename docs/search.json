@@ -11,42 +11,42 @@
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（社会問題）\nコレラが流行する原因は何か？\n\n大気汚染？（当時はこちらの考え方が主流）\n水質汚染？\n\n原因に応じて解決策を見出す\n\n大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）\n水質汚染が原因 -&gt; 水質改善？"
+    "text": "偉大な先人から学ぶ\n\n\n\n19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（社会問題）\nコレラが流行する原因は何か？\n\n瘴気（悪い空気）？（当時は「瘴気説」が主流）\n水質汚染？\n\n原因に応じて解決策を見出す\n\n大気汚染が原因 -&gt; 街の悪臭を消す対策？（実際に行われた）\n水質汚染が原因 -&gt; 水質改善？"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-1",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow(1813-1858)\n\n\nスノウが「データ分析」で気づいたこと：\n\n\n水道を供給する会社によって住民のコレラによる死亡率が異なる\n多くの死者がある特定の井戸を利用\nその井戸近くの醸造所の従業員には重症者なし（従業員用の井戸、水の代わりにビール飲む）\n\n\n-&gt; 原因は水質にあるのでは？"
+    "text": "偉大な先人から学ぶ\n\n\n\nJohn Snow (1813-1858)\n\n\nデータの収集・分析でスノウがで気づいたこと：\n\n\n水道を供給する会社によって住民のコレラによる死亡率が異なる\n死亡者の多くが、ある特定の井戸を利用していた\nその井戸の近くの醸造所の従業員には重症者なし（独自の井戸を利用／水の代わりにビールを飲む）\n\n\n-&gt; 原因は水質にあるのでは？"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-2",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nある水道会社から水を引いていた井戸（赤）周辺の死者が多い\nビール工場（緑）では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt;水質が原因であると推測"
+    "text": "偉大な先人から学ぶ\n\n\n\n“コレラマップ”\n\n\n\nBroad Streetの井戸（赤）周辺の死者が多い\nビール工場（緑）では重症者なし\nこの井戸を利用停止にしたら死者数が減少\n\n-&gt; 水が原因であるという仮説をさらに支持"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
     "href": "lecture-ryukoku-slides.html#偉大な先人から学ぶ-3",
     "title": "データ分析と問題解決",
     "section": "偉大な先人から学ぶ",
-    "text": "偉大な先人から学ぶ\n\n\n\n\n\n解決策\n\n上下水道の整備\n水は沸騰させてから飲む\n\n-&gt; コレラによる死者の激減\n正しい原因を突き止めることで適切な対応策を立てることができた"
+    "text": "偉大な先人から学ぶ\n\n\n\n\n\n解決策（その後の公衆衛生対策）\n\n上下水道の整備\n安全な飲料水の確保（水は沸騰させてから飲む）\n\n-&gt; コレラなど水系感染症の抑制\n正しい原因を突き止めることで適切な対応策を立てることができた"
   },
   {
-    "objectID": "lecture-ryukoku-slides.html#演習ジョンスノウ-の分析の再現",
-    "href": "lecture-ryukoku-slides.html#演習ジョンスノウ-の分析の再現",
+    "objectID": "lecture-ryukoku-slides.html#演習ジョンスノウの分析の再現",
+    "href": "lecture-ryukoku-slides.html#演習ジョンスノウの分析の再現",
     "title": "データ分析と問題解決",
-    "section": "演習：ジョン・スノウ の分析の再現",
-    "text": "演習：ジョン・スノウ の分析の再現\n\nこの演習では SnowData パッケージを使用する\n\n# 初回のみ必要\n# install.packages(\"SnowData\")\n# install.packages(\"tidyr\")\n\nlibrary(SnowData)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nSnowData には次のデータが含まれている\n\ncholera_cases：コレラの死亡が発生した地点と死者数\npump_locations：井戸の位置\nstreets：道路の位置"
+    "section": "演習：ジョン・スノウの分析の再現",
+    "text": "演習：ジョン・スノウの分析の再現\n\nこの演習では SnowData パッケージを使用する\n\n# 必要なパッケージのインストール（初回のみ必要）\n# install.packages(c(\"SnowData\", \"ggplot2\", \"dplyr\", \"tidyr\"))\n\nlibrary(SnowData)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nSnowData には次のデータが含まれている\n\ncholera_cases：コレラの死亡が発生した地点と死者数\npump_locations：井戸の位置\nstreets：道路の位置"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#データを読み込む",
     "href": "lecture-ryukoku-slides.html#データを読み込む",
     "title": "データ分析と問題解決",
     "section": "データを読み込む",
-    "text": "データを読み込む\n\ndata()で以下の３つのデータを読み込む\n\n## データの読み込み ##\ndata(cholera_cases)\ndata(pump_locations)\ndata(streets)"
+    "text": "データを読み込む\n\ndata()で以下の3つのデータを読み込む\n\n## データの読み込み ##\ndata(cholera_cases)\ndata(pump_locations)\ndata(streets)"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#データを読み込む-1",
@@ -144,7 +144,7 @@
     "href": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ",
     "title": "データ分析と問題解決",
     "section": "疑わしい井戸を選ぶ",
-    "text": "疑わしい井戸を選ぶ\n\n周辺の死者数が最も多い二つの井戸を取り出す\n\n## 周辺の死者数が最も多い二つの井戸を取り出す ##\ntop2_pumps &lt;- pump_deaths |&gt;\n  slice_max(\n    deaths_nearby,\n    n = 2,\n    with_ties = FALSE\n  ) |&gt;\n  arrange(desc(deaths_nearby)) |&gt;\n  transmute(\n    id = pump_id,\n    Easting = pump_e,\n    Northing = pump_n,\n    deaths_nearby\n  )"
+    "text": "疑わしい井戸を選ぶ\n\n周辺の死者数が多い上位2つの井戸を取り出す\n\n## 周辺の死者数が最も多い二つの井戸を取り出す ##\ntop2_pumps &lt;- pump_deaths |&gt;\n  slice_max(\n    deaths_nearby,\n    n = 2,\n    with_ties = FALSE\n  ) |&gt;\n  arrange(desc(deaths_nearby)) |&gt;\n  transmute(\n    id = pump_id,\n    Easting = pump_e,\n    Northing = pump_n,\n    deaths_nearby\n  )"
   },
   {
     "objectID": "lecture-ryukoku-slides.html#疑わしい井戸を選ぶ-1",

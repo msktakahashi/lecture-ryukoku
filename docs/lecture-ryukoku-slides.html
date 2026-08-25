@@ -203,7 +203,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">データ分析と問題解決</h1>
-  <p class="subtitle">模擬授業@龍谷大学</p>
+  <p class="subtitle">模擬授業（龍谷大学）</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -240,7 +240,7 @@
 <li><p>19世紀半ばのロンドンでコレラが大流行、多くの死者が出る（<strong>社会問題</strong>）</p></li>
 <li><p>コレラが流行する<strong>原因</strong>は何か？</p>
 <ul>
-<li>大気汚染？（当時はこちらの考え方が主流）</li>
+<li>瘴気（悪い空気）？（当時は「瘴気説」が主流）</li>
 <li>水質汚染？</li>
 </ul></li>
 <li><p>原因に応じて<strong>解決策</strong>を見出す</p>
@@ -257,15 +257,15 @@
 <div class="v-center">
 <div class="columns">
 <div class="column" style="width:40%;">
-<h4 id="john-snow1813-1858">John Snow(1813-1858)</h4>
+<h4 id="john-snow-1813-1858">John Snow (1813-1858)</h4>
 <p><img data-src="images/John_Snow.jpg" style="width:70.0%"></p>
 </div><div class="column" style="width:60%;">
-<h4 id="スノウがデータ分析で気づいたこと">スノウが「<strong>データ分析</strong>」で気づいたこと：</h4>
+<h4 id="データの収集分析でスノウがで気づいたこと">データの収集・分析でスノウがで気づいたこと：</h4>
 <div class="small-text08">
 <ul>
 <li>水道を供給する会社によって住民のコレラによる死亡率が異なる</li>
-<li>多くの死者がある特定の井戸を利用</li>
-<li>その井戸近くの醸造所の従業員には重症者なし（従業員用の井戸、水の代わりにビール飲む）</li>
+<li>死亡者の多くが、ある特定の井戸を利用していた</li>
+<li>その井戸の近くの醸造所の従業員には重症者なし（独自の井戸を利用／水の代わりにビールを飲む）</li>
 </ul>
 </div>
 <p>-&gt; 原因は水質にあるのでは？</p>
@@ -281,11 +281,11 @@
 <p><img data-src="images/epidemiology-snow1.jpg" style="width:100.0%"></p>
 </div><div class="column" style="width:50%;">
 <ul>
-<li>ある水道会社から水を引いていた井戸（赤）周辺の死者が多い</li>
+<li>Broad Streetの井戸（赤）周辺の死者が多い</li>
 <li>ビール工場（緑）では重症者なし</li>
 <li><strong>この井戸を利用停止にしたら死者数が減少</strong></li>
 </ul>
-<p>-&gt;水質が原因であると推測</p>
+<p>-&gt; 水が原因であるという仮説をさらに支持</p>
 </div></div>
 </div>
 </section>
@@ -296,28 +296,27 @@
 <div class="column" style="width:40%;">
 <p><img data-src="images/poster.png" style="width:80.0%"></p>
 </div><div class="column" style="width:60%;">
-<h4 id="解決策">解決策</h4>
+<h4 id="解決策その後の公衆衛生対策">解決策（その後の公衆衛生対策）</h4>
 <ul>
 <li>上下水道の整備</li>
-<li>水は沸騰させてから飲む</li>
+<li>安全な飲料水の確保（水は沸騰させてから飲む）</li>
 </ul>
-<p>-&gt; コレラによる死者の激減</p>
+<p>-&gt; コレラなど水系感染症の抑制</p>
 <p>正しい原因を突き止めることで適切な対応策を立てることができた</p>
 </div></div>
 </div>
 </section>
-<section id="演習ジョンスノウ-の分析の再現" class="slide level2">
-<h2>演習：ジョン・スノウ の分析の再現</h2>
+<section id="演習ジョンスノウの分析の再現" class="slide level2">
+<h2>演習：ジョン・スノウの分析の再現</h2>
 <div class="v-center">
 <p>この演習では <code>SnowData</code> パッケージを使用する</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="co"># 初回のみ必要</span></span>
-<span id="cb1-2"><a aria-label="2"></a><span class="co"># install.packages("SnowData")</span></span>
-<span id="cb1-3"><a aria-label="3"></a><span class="co"># install.packages("tidyr")</span></span>
-<span id="cb1-4"><a aria-label="4"></a></span>
-<span id="cb1-5"><a aria-label="5"></a><span class="fu">library</span>(SnowData)</span>
-<span id="cb1-6"><a aria-label="6"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-7"><a aria-label="7"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="co"># 必要なパッケージのインストール（初回のみ必要）</span></span>
+<span id="cb1-2"><a aria-label="2"></a><span class="co"># install.packages(c("SnowData", "ggplot2", "dplyr", "tidyr"))</span></span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="fu">library</span>(SnowData)</span>
+<span id="cb1-5"><a aria-label="5"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a aria-label="6"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>SnowData</code> には次のデータが含まれている</p>
 <ul>
@@ -330,7 +329,7 @@
 <section id="データを読み込む" class="slide level2">
 <h2>データを読み込む</h2>
 <div class="v-center">
-<p><code>data()</code>で以下の３つのデータを読み込む</p>
+<p><code>data()</code>で以下の3つのデータを読み込む</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="do">## データの読み込み ##</span></span>
 <span id="cb2-2"><a aria-label="2"></a><span class="fu">data</span>(cholera_cases)</span>
@@ -636,7 +635,7 @@
 </div></section><section id="疑わしい井戸を選ぶ" class="slide level2">
 <h2>疑わしい井戸を選ぶ</h2>
 <div class="v-center">
-<p>周辺の死者数が最も多い二つの井戸を取り出す</p>
+<p>周辺の死者数が多い上位2つの井戸を取り出す</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="do">## 周辺の死者数が最も多い二つの井戸を取り出す ##</span></span>
 <span id="cb18-2"><a aria-label="2"></a>top2_pumps <span class="ot">&lt;-</span> pump_deaths <span class="sc">|&gt;</span></span>
